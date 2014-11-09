@@ -2,40 +2,69 @@ package com.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
+import java.util.List;
 
+import javax.management.Query;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.db.User;
 
 /**
  * Servlet implementation class Login
  */
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Login() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		PrintWriter out=response.getWriter();
-		out.print("just a test");
+	public Login() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		System.out.println("We are in the HttpServlet dopost method");
+		String username = "user";
+		String password = "root";
+		String un = req.getParameter("username");
+		String pw = req.getParameter("password");
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("User");
+		EntityManager em=emf.createEntityManager();
+		User u=(User) em.find(User.class, 1);
+		System.out.println(u.getUsername());
+		javax.persistence.Query querybyusername=em.createNamedQuery("User.findByusername");
+		querybyusername.setParameter("username", un);
+		List<User> result=querybyusername.getResultList();
+		for(User p:result){
+			System.out.println(u.getPassword());
+		}
+		
+		em.close();
+		emf.close();
+		String msg = "";
+		if (username.equals(un) && password.equals(pw)) {
+			msg = "Hello " + username + "! Your login is successful";
+		} else {
+			msg = "Sorry " + un + "! Your login is incorrect.";
+		}
+
+		resp.setContentType("text/html");
+		PrintWriter out = resp.getWriter();
+		out.println("<font size='6' color=red >" + msg + "</font>");
+	};
+
+	
 
 }

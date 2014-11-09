@@ -10,7 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-    <description></description>
+    <description>Login servlet</description>
     <display-name>Login</display-name>
     <servlet-name>Login</servlet-name>
     <servlet-class>com.login.Login</servlet-class>

@@ -11,12 +11,12 @@
 <h1>
 Please enter your name and password:</h1>
 	<br>
-	<form action="Login" >
+	<form action="Login" method="post">
 	<label>Username:</label>
-	<input type="text" id="username">
+	<input type="text" name="username">
 	<br>
 	<label>Password:</label>
-	<input type="password"  id="password">
+	<input type="password"  name="password">
 	<br>
 	<input type="submit" value="Login">
 	</form>
