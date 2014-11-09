@@ -42,20 +42,18 @@ public class Login extends HttpServlet {
 		String pw = req.getParameter("password");
 		EntityManagerFactory emf=Persistence.createEntityManagerFactory("User");
 		EntityManager em=emf.createEntityManager();
-		User u=(User) em.find(User.class, 1);
-		System.out.println(u.getUsername());
 		javax.persistence.Query querybyusername=em.createNamedQuery("User.findByusername");
 		querybyusername.setParameter("username", un);
 		List<User> result=querybyusername.getResultList();
 		for(User p:result){
-			System.out.println(u.getPassword());
+			System.out.println(p.getPassword());
 		}
 		
 		em.close();
 		emf.close();
 		String msg = "";
-		if (username.equals(un) && password.equals(pw)) {
-			msg = "Hello " + username + "! Your login is successful";
+		if (pw.equals(result.get(0).getPassword())) {
+			msg = "Hello " + un + "! Your login is successful";
 		} else {
 			msg = "Sorry " + un + "! Your login is incorrect.";
 		}
