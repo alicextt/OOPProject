@@ -11,8 +11,9 @@
 <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 </head>
-<body>
-
+<body><div>
+<img alt="Logo.jpg" src="img/FIL Logo.jpg" hspace="200">
+</div>
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
