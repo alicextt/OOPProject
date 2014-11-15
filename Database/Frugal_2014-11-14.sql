@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.21)
 # Database: Frugal
-# Generation Time: 2014-11-13 06:17:59 +0000
+# Generation Time: 2014-11-15 00:05:25 +0000
 # ************************************************************
 
 
@@ -87,21 +87,20 @@ CREATE TABLE `User` (
   `Email` varchar(55) DEFAULT NULL,
   `UserName` varchar(255) NOT NULL,
   `PassWord` varchar(255) NOT NULL,
-  `Administrator` tinyint(1) NOT NULL,
   PRIMARY KEY (`IdUser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
 
-INSERT INTO `User` (`IdUser`, `FirstName`, `LastName`, `Email`, `UserName`, `PassWord`, `Administrator`)
+INSERT INTO `User` (`IdUser`, `FirstName`, `LastName`, `Email`, `UserName`, `PassWord`)
 VALUES
-	(1,'Ryan','Davidson',' Davidson@scu.edu','student1','1',0),
-	(2,'Kirsten','Petersen','Petersen@scu.edu','student2','2',0),
-	(3,'Silvia','Figueira','Figueira@scu.edu','admin','admin',1),
-	(4,'Shoba','Krishnan','Krishnan@scu.edu','faculty','faculty',0),
-	(5,'Ian','Dougherty','Dougherty@scu.edu','student3','3',0),
-	(6,'Jaqueline','Barbosa',' Barbosa@scu.edu','student4','4',0);
+	(1,'Ryan','Davidson',' Davidson@scu.edu','student1','1'),
+	(2,'Kirsten','Petersen','Petersen@scu.edu','student2','2'),
+	(3,'Silvia','Figueira','Figueira@scu.edu','admin','admin'),
+	(4,'Shoba','Krishnan','Krishnan@scu.edu','faculty','faculty'),
+	(5,'Ian','Dougherty','Dougherty@scu.edu','student3','3'),
+	(6,'Jaqueline','Barbosa',' Barbosa@scu.edu','student4','4');
 
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;

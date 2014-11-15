@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.db.User;
+import model.User;
 
 /**
  * Servlet implementation class Login
@@ -43,16 +43,18 @@ public class Login extends HttpServlet {
 		EntityManagerFactory emf=Persistence.createEntityManagerFactory("User");
 		EntityManager em=emf.createEntityManager();
 		javax.persistence.Query querybyusername=em.createNamedQuery("User.findByusername");
-		querybyusername.setParameter("username", un);
+		
+		querybyusername.setParameter("userName", un);
+		System.out.print(querybyusername);
 		List<User> result=querybyusername.getResultList();
-		for(User p:result){
-			System.out.println(p.getPassword());
-		}
+//		for(User p:result){
+//			System.out.println(p.getPassWord());
+//		}
 		
 		em.close();
 		emf.close();
 		String msg = "";
-		if (pw.equals(result.get(0).getPassword())) {
+		if (pw.equals(result.get(0).getPassWord())) {
 			msg = "Hello " + un + "! Your login is successful";
 		} else {
 			msg = "Sorry " + un + "! Your login is incorrect.";
