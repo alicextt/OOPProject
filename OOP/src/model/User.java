@@ -40,6 +40,10 @@ public class User implements Serializable {
 	public User() {
 	}
 
+	public String toString(){
+		return "First Name: " + getFirstName() + " Last Name:  " + getLastName() + 
+		        " Email:      " + getEmail() ;	
+	}
 	public int getIdUser() {
 		return this.idUser;
 	}

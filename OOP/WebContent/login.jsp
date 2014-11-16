@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="model.User" %>
 
 <%@taglib uri="/struts-tags" prefix="s"%>
 
@@ -34,9 +33,10 @@
 						src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
 						alt="">
 					<s:form action="Login" cssClass="form-signin">
-						<s:textfield name="userName" cssClass="form-control"
+					<!-- this will parse the userName to obejct u directly -->
+						<s:textfield name="u.userName" cssClass="form-control"
 							placeholder="Account"  />
-						<s:password name="password" cssClass="form-control"
+						<s:password name="u.passWord" cssClass="form-control"
 							placeholder="Password" />
 						<s:submit value="Login"
 							cssClass="btn btn-lg btn-primary btn-block" />

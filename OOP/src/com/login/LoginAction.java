@@ -1,6 +1,5 @@
 package com.login;
 
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -16,8 +15,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport implements SessionAware {
 
-	private String userName;
-	private String password;
 	private User u;
 	Map<String, Object> session;
 
@@ -26,42 +23,30 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		this.session = session;
 	}
 
+	public User getU() {
+		return u;
+	}
+
+	public void setU(User u) {
+		this.u = u;
+	}
+
 	public String execute() {
 	
 		session.put("user", u);
 		return SUCCESS;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
+// the validate method will intercept before execute, if failed, will go back return input
 	public void validate() {
-		// if (getUserName().length() == 0) {
-		// addFieldError("userName", "UserName.required");
-		// } else if (!getUserName().equals("Arpit")) {
-		// addFieldError("userName", "Invalid User");
-		// }
-		// if (getPassword().length() == 0) {
-		// addFieldError("password", getText("password.required"));
-		// }
+
 //		System.out.println("We are in the validate method");
-		String username = "user";
-		String password = "root";
-		String un = getUserName();
-		String pw = getPassword();
+		
+		String un = u.getUserName();
+		String pw = u.getPassWord();
+		
+//		System.out.println(" this is from the page username"+un+" and the password is "+pw);
+		
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory("User");
 		EntityManager em = emf.createEntityManager();
@@ -69,20 +54,21 @@ public class LoginAction extends ActionSupport implements SessionAware {
 				.createNamedQuery("User.findByusername");
 
 		querybyusername.setParameter("userName", un);
-		// System.out.print(querybyusername);
+//		 System.out.println(querybyusername);
 		List<User> result = querybyusername.getResultList();
+	
 		// for(User p:result){
 		// System.out.println(p.getPassWord());
 		// }
-
 		em.close();
 		emf.close();
 		if (result.isEmpty()) {
-			addFieldError("userName", "Incorrect Account !");
+			System.out.println("entered");
+			addFieldError("u.userName", "Incorrect Account !");
 			return;
 		}
 		if (!pw.equals(result.get(0).getPassWord())) {
-			addFieldError("password", "Incorrect Password!");
+			addFieldError("u.passWord", "Incorrect Password!");
 			return;
 		}
 		u=result.get(0);
