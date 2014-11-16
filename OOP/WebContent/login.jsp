@@ -13,13 +13,10 @@
 <link
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <s:head />
 </head>
-<body>
+<body >
 	<div>
 		<img alt="Logo.jpg" src="img/FIL Logo.jpg" hspace="200">
 	</div>
@@ -47,7 +44,7 @@
 						<span class="clearfix"></span>
 					</s:form>
 				</div>
-				<a href="#" class="text-center new-account">Create an account </a>
+				<a href="signup.jsp" class="text-center new-account">Create an account </a>
 			</div>
 		</div>
 	</div>
