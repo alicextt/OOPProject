@@ -3,7 +3,7 @@
 
 <%@taglib uri="/struts-tags" prefix="s"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,7 +16,7 @@
 
 <s:head />
 </head>
-<body >
+<body style="background-color:#f0f0f0">
 	<div>
 		<img alt="Logo.jpg" src="img/FIL Logo.jpg" hspace="200">
 	</div>
