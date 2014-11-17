@@ -10,11 +10,14 @@ import javax.persistence.Persistence;
 import org.apache.struts2.interceptor.SessionAware;
 
 import model.User;
+import DAO.UserService;
+import DAO.UserServiceImp;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport implements SessionAware {
 
+	// u is parsed from login.jsp
 	private User u;
 	Map<String, Object> session;
 
@@ -31,6 +34,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		this.u = u;
 	}
 
+	// add u as logged user in session
 	public String execute() {
 	
 		session.put("user", u);
@@ -45,25 +49,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		String un = u.getUserName();
 		String pw = u.getPassWord();
 		
-//		System.out.println(" this is from the page username"+un+" and the password is "+pw);
-		
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("User");
-		EntityManager em = emf.createEntityManager();
-		javax.persistence.Query querybyusername = em
-				.createNamedQuery("User.findByusername");
-
-		querybyusername.setParameter("userName", un);
-//		 System.out.println(querybyusername);
-		List<User> result = querybyusername.getResultList();
-	
-		// for(User p:result){
-		// System.out.println(p.getPassWord());
-		// }
-		em.close();
-		emf.close();
+		UserService us=new UserServiceImp();
+		List<User> result=us.readUser(un);
 		if (result.isEmpty()) {
-			System.out.println("entered");
 			addFieldError("u.userName", "Incorrect Account !");
 			return;
 		}
