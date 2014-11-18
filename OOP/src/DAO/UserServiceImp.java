@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import model.User;
 
@@ -20,8 +21,10 @@ public class UserServiceImp implements UserService {
 	public List<User> readUser(String name) {
 
 		EntityManager em = emf.createEntityManager();
-		javax.persistence.Query querybyusername = em
-				.createNamedQuery("User.findByusername");
+		
+		// typerdquery is type safer
+		TypedQuery<User> querybyusername = em
+				.createNamedQuery("User.findByusername", User.class);
 		querybyusername.setParameter("userName", name);
 
 		List<User> result = querybyusername.getResultList();
