@@ -10,17 +10,14 @@ import javax.persistence.*;
  * 
  */
 @Entity(name = "user")
+@Table(name="User")
 @NamedQueries({
 	@NamedQuery(name="User.findAll", query="SELECT u FROM user u"),
 @NamedQuery(name="User.findByusername", query="SELECT u FROM user u where u.userName=:userName")
+
 })
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name = "IdUser")
-	@GeneratedValue(strategy = GenerationType.TABLE)
-	private int idUser;
 
 	@Column(name="Email")
 	private String email;
@@ -34,6 +31,8 @@ public class User implements Serializable {
 	@Column(name="PassWord")
 	private String passWord;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name="UserName")
 	private String userName;
 
@@ -44,13 +43,7 @@ public class User implements Serializable {
 		return "First Name: " + getFirstName() + " Last Name:  " + getLastName() + 
 		        " Email:      " + getEmail() ;	
 	}
-	public int getIdUser() {
-		return this.idUser;
-	}
-
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
-	}
+	
 
 	public String getEmail() {
 		return this.email;

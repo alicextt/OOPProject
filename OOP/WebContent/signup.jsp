@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib uri="/struts-tags" prefix="s"%>
+
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="css/login.css">
@@ -10,6 +12,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Sign up</title>
+<s:head />
+
 </head>
 <body style="background-color: #525252">
 	<div class="container">
@@ -21,53 +25,48 @@
 						<h3 class="panel-title">Please sign up for Frugal Lab</h3>
 					</div>
 					<div class="panel-body">
-						<form role="form">
+						<!--  <form role="form">-->
+						<s:form action="Register">
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="first_name" id="first_name"
-											class="form-control input-sm" placeholder="First Name">
+										<s:textfield name="u.firstName" id="first_name"
+											cssClass="form-control input-sm" placeholder="First Name" />
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="last_name" id="last_name"
-											class="form-control input-sm" placeholder="Last Name">
+										<s:textfield name="u.lastName" id="last_name"
+											cssClass="form-control input-sm" placeholder="Last Name" />
 									</div>
 								</div>
 							</div>
 
 							<div class="form-group">
-								<input type="email" name="email" id="email"
-									class="form-control input-sm" placeholder="Email Address">
+								<s:textfield name="u.email" id="email"
+									cssClass="form-control input-sm" placeholder="Email Address" />
 							</div>
 
-							<div class="row">
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="password" name="password" id="password"
-											class="form-control input-sm" placeholder="Password">
-									</div>
-								</div>
-								<div class="col-xs-6 col-sm-6 col-md-6">
-									<div class="form-group">
-										<input type="password" name="password_confirmation"
-											id="password_confirmation" class="form-control input-sm"
-											placeholder="Confirm Password">
-									</div>
-								</div>
+							<div class="form-group">
+										<s:textfield name="u.userName" id="username"
+											cssClass="form-control input-sm" placeholder="Username" />
+									
 							</div>
-							<div class="col-sm-10">
+									<div class="form-group">
+										<s:password name="u.passWord" id="password"
+											cssClass="form-control input-sm" placeholder="Password" />
+									
+							</div>
+							<!-- <div class="col-sm-10">
 								<div class="checkbox" style="margin-left: 100px;margin-top:-5px">
 									<label > <input type="checkbox"> <b>Administrator
 									</label>
 								</div>
 							</div>
+ -->
 
-
-							<input type="submit" value="Register"
-								class="btn btn-info btn-block">
-						</form>
+							<s:submit value="Register" cssClass="btn btn-info btn-block" />
+						</s:form>
 					</div>
 				</div>
 			</div>

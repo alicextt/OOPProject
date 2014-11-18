@@ -10,5 +10,10 @@
 			<result name="input">login.jsp</result>
 			<result name="admin">login2.jsp</result>
 		</action>
+		<action name="Register" class="com.login.SignUpAction">
+			<result name="success">login.jsp</result>
+			<result name="input">signup.jsp</result>
+		</action>
 	</package>
+	
 </struts> 
