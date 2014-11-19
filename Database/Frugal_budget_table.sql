@@ -6,5 +6,7 @@ ProjectedAmount int(10),
 ActualAmount int(10),
 primary key (IdBudget));
 
-insert into Budget values('401', 'buget for 401', '201', '10000', '12000');
-insert into Budget values('402', 'buget for 402', '202', '10000', '9000');
+insert into Budget values('401', 'Travel', '201', '1000', '1200');
+insert into Budget values('402', 'Meals', '201', '500', '450');
+insert into Budget values('403', 'Lodging', '202', '500', '600');	
+insert into Budget values('404', 'Supplies', '202', '100', '50');	
