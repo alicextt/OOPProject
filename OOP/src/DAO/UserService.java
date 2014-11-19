@@ -2,6 +2,7 @@ package DAO;
 
 import java.util.List;
 
+import model.Project;
 import model.User;
 
 public interface UserService {
@@ -9,5 +10,4 @@ public interface UserService {
 	boolean addUser(User u);
 	void updateUser(User u);
 	void deleteUser(User u);
-	
 }
