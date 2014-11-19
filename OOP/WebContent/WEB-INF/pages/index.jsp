@@ -16,7 +16,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Struts2 tutorial</title>
+<title>Frugal Innovation Lab</title>
 <!-- can not working through the css -->
 <style>
 .sidebar-nav .navbar li a:hover {
@@ -63,13 +63,12 @@
 							<li><a href="#" data-toggle="collapse"
 								data-target="#team" data-parent="#sidenav01"
 								class="collapsed"> <span class="glyphicon glyphicon-cloud"></span>
-									Team <span class="caret pull-right"></span>
+									Query <span class="caret pull-right"></span>
 							</a>
 								<div class="collapse" id="team" style="height: 0px;">
 									<ul class="nav nav-list">
-										<li><a href="#">Team info</a></li>
-										<li><a href="#">Team status</a></li>
-										<li><a href="#">Submenu1.3</a></li>
+										<li><a href="#">Query by name</a></li>
+										<li><a href="#">Query by project</a></li>
 									</ul>
 								</div></li>
 							<li class="active"><a href="#" data-toggle="collapse"
@@ -80,8 +79,8 @@
 								<div class="collapse" id="project" style="height: 0px;">
 									<ul class="nav nav-list">
 										<li><a href="#">My projects</a></li>
-										<li><a href="#">Finished projects</a></li>
-										<li><a href="#">Project status</a></li>
+										<li><a href="#">Create Project</a></li>
+										<li><a href="#">Edit Project</a></li>
 									</ul>
 								</div></li>
 							<li><a href="#" data-toggle="collapse"
