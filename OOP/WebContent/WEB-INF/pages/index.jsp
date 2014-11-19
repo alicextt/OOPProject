@@ -26,7 +26,7 @@
 </style>
 
 </head>
-<body >
+<body>
 	<!-- ${user.getLastName()}, ${user.getFirstName()}! You are logged in! -->
 
 	<div class="row affix-row">
@@ -60,10 +60,10 @@
 										<li><a href="#">Upcoming Task</a></li>
 									</ul>
 								</div></li>
-							<li><a href="#" data-toggle="collapse"
-								data-target="#team" data-parent="#sidenav01"
-								class="collapsed"> <span class="glyphicon glyphicon-cloud"></span>
-									Query <span class="caret pull-right"></span>
+							<li><a href="#" data-toggle="collapse" data-target="#team"
+								data-parent="#sidenav01" class="collapsed"> <span
+									class="glyphicon glyphicon-cloud"></span> Query <span
+									class="caret pull-right"></span>
 							</a>
 								<div class="collapse" id="team" style="height: 0px;">
 									<ul class="nav nav-list">
@@ -107,13 +107,19 @@
 		<div class="col-sm-9 col-md-10 affix-content">
 			<div class="container">
 				<div>
-					<img alt="Logo.jpg" src="img/FIL Logo.jpg" hspace="0">
+					<img alt="Logo.jpg" src="img/FIL Logo.jpg" hspace="0" vspace="20"
+						style="float: left"> <a
+						href="https://drive.google.com/a/scu.edu/file/d/0BzYeTJK5yum0dXhpNWZSY09RaG8/view?usp=sharing"
+						style="float: right;padding: 30px ">Google Folder</a>
+
 				</div>
-				<div class="page-header">
+
+				<div class="page-header" style="clear: both">
 					<h3>
 						<span class="glyphicon glyphicon-th-list"></span> Open projects
 					</h3>
 				</div>
+
 
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 					Mauris lectus orci, viverra nec neque non, tincidunt commodo leo.
