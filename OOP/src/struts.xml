@@ -14,6 +14,12 @@
 			<result name="success">login.jsp</result>
 			<result name="input">signup.jsp</result>
 		</action>
+		<action name="URLRedirection" class="com.login.URLRedirection">
+			<result name="viewmyprojects"> /WEB-INF/pages/MyProjects.jsp</result>
+			<result name="createprojects"> /WEB-INF/pages/NewProject.jsp</result>
+		</action>
+
 	</package>
-	
+
+
 </struts> 

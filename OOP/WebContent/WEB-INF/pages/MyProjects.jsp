@@ -1,3 +1,7 @@
+<%@ page import="model.*"%>
+<%@ page import="java.text.DateFormat"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
@@ -77,15 +81,11 @@
 							</a>
 								<div class="collapse" id="project" style="height: 0px;">
 									<ul class="nav nav-list">
-
 										<li><s:url id="urlValue" action="URLRedirection"
 												encode="true">
 												<s:param name="url">viewmyprojects</s:param>
-											</s:url> <s:a href="%{urlValue}">My Projects</s:a></li>
-										<li><s:url id="urlValue" action="URLRedirection"
-												encode="true">
-												<s:param name="url">createprojects</s:param>
-											</s:url> <s:a href="%{urlValue}">Create Project</s:a></li>
+											</s:url> <s:a href="%{urlValue}">MyProjects</s:a></li>
+										<li><a href="#">Create Project</a></li>
 										<li><a href="#">Edit Project</a></li>
 									</ul>
 								</div></li>
@@ -122,32 +122,51 @@
 
 				<div class="page-header" style="clear: both">
 					<h3>
-						<span class="glyphicon glyphicon-th-list"></span> Open projects
+						<span class="glyphicon glyphicon-th-list"></span> Project Participated
 					</h3>
 				</div>
 
 
+				<p>My projects and details:</p>
+				<div class="project-table">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Start Date</th>
+								<th>End Date</th>
+								<th>Project Outcome</th>
+								<th>Project Status</th>
+							</tr>
+						</thead>
+						<%
+							User u = (User) (session.getAttribute("user"));
+							for (Project p : u.getProjects()) {
+						%>
 
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Mauris lectus orci, viverra nec neque non, tincidunt commodo leo.
-					Nullam eleifend velit purus, id aliquam elit venenatis sit amet.
-					Cras vel nisl eget eros tempus viverra. Phasellus in enim et nulla
-					tempor blandit. Donec at lectus sit amet velit faucibus tincidunt
-					quis sed est. Mauris placerat purus odio. In egestas, velit quis
-					congue sodales, turpis lacus pellentesque neque, quis accumsan orci
-					nibh sed mauris. Sed sit amet pulvinar felis. Aliquam consequat
-					tellus non ligula elementum, at egestas quam vestibulum. Duis sed
-					urna sit amet quam rutrum malesuada sed eu risus. Cras sit amet
-					velit a neque tincidunt cursus sed ac nunc. Donec ac auctor purus.
-					Proin viverra turpis sit amet dui sagittis, quis tempor elit
-					suscipit. Curabitur rutrum lacus et diam lacinia, vel ullamcorper
-					libero vulputate. Phasellus sem ligula, pharetra sed nisl sed,
-					facilisis sagittis ante. Nullam egestas turpis et mauris aliquet
-					cursus. Nullam vel eleifend neque.</p>
+						<tr>
+							<td><%=p.getName()%>
+							<td><%=p.getDescription()%></td>
+							<td><%=Project.dateToStr(p.getStartDate())%></td>
+							<td><%=Project.dateToStr(p.getEndDate())%></td>
+							<td><%=p.getProjectOutcome()%></td>
+							<td><%=p.getProjectStatus()%></td>
+						</tr>
+
+						<%
+							}
+						%>
+
+					</table>
+				</div>
+
+
 
 			</div>
 		</div>
 	</div>
+
 
 </body>
 </html>

@@ -53,8 +53,14 @@ public class User implements Serializable {
 	}
 
 	public String toString() {
+		int i=projects.size();
+		String projectslist=" ";
+		for(Project p: projects){
+			projectslist+=p.getDescription()+"  ";
+		}
+		
 		return "First Name: " + getFirstName() + " Last Name:  "
-				+ getLastName() + " Email:      " + getEmail();
+				+ getLastName() + " Email:      " + getEmail()+" Projects: "+projectslist;
 	}
 
 	@Override
