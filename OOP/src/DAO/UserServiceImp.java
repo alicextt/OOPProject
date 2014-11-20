@@ -14,7 +14,7 @@ public class UserServiceImp implements UserService {
 	protected static EntityManagerFactory emf;
 
 	public UserServiceImp() {
-		emf = Persistence.createEntityManagerFactory("User");
+		emf = Persistence.createEntityManagerFactory("PersistenceUnit");
 	}
 
 	@Override

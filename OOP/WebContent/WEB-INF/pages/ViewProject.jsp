@@ -122,50 +122,75 @@
 
 				<div class="page-header" style="clear: both">
 					<h3>
-						<span class="glyphicon glyphicon-th-list"></span> Project Participated
+						<span class="glyphicon glyphicon-th-list"></span> Project Detail:
 					</h3>
 				</div>
 
 
-				
+
 				<div class="project-table">
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th>Name</th>
+								<th width="200px">Name</th>
+								<th>Description</th>
+
+							</tr>
+						</thead>
+						<%
+							Project p = (Project) (session.getAttribute("project"));
+						%>
+
+						<tr>
+							<td><%=p.getName()%></td>
+							<td><%=p.getDescription()%></td>
+
+						</tr>
+					</table>
+				</div>
+
+				<div class="project-table">
+					<table class="table table-bordered" style="table-layout: fixed">
+						<thead>
+							<tr>
 								<th>Start Date</th>
 								<th>End Date</th>
+								<th>Last Modified Date</th>
 								<th>Project Outcome</th>
 								<th>Project Status</th>
 							</tr>
 						</thead>
-						<%
-							User u = (User) (session.getAttribute("user"));
-							for (Project p : u.getProjects()) {
-						%>
-
 						<tr>
-							<td>
-							<s:url id="urlValue" action="ProjectAction"
-												encode="true">
-												<s:param name="name"><%=p.getName()%></s:param>
-											</s:url> <s:a href="%{urlValue}"><%=p.getName()%></s:a>
-							
-						<!--  	<td><%=p.getDescription()%></td>-->
 							<td><%=Project.dateToStr(p.getStartDate())%></td>
 							<td><%=Project.dateToStr(p.getEndDate())%></td>
+							<td><%=Project.dateToStr(p.getLastModifiedDate())%></td>
 							<td><%=p.getProjectOutcome()%></td>
 							<td><%=p.getProjectStatus()%></td>
 						</tr>
-
-						<%
-							}
-						%>
-
 					</table>
+					<p> Team members:</p>
+					<div style="margin:20px">
+					<table class="table table-bordered" >
+					<thead>
+						<tr>
+								<th >First name</th>
+								<th >Last name</th>
+						</tr>
+						</thead>	
+							<%
+								for (User u : p.getUsers()) {
+							%>
+							<tr>	
+							<td><%=u.getFirstName()%></td>
+							<td><%=u.getLastName() %></td>
+							</tr>
+							<%
+								}
+							%>
+						
+					</table>
+					</div>
 				</div>
-
-
 
 			</div>
 		</div>

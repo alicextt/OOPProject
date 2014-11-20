@@ -18,6 +18,10 @@
 			<result name="viewmyprojects"> /WEB-INF/pages/MyProjects.jsp</result>
 			<result name="createprojects"> /WEB-INF/pages/NewProject.jsp</result>
 		</action>
+		<action name="ProjectAction" class="com.login.ProjectAction">
+			<result name="success"> /WEB-INF/pages/ViewProject.jsp</result>
+		</action>
+
 
 	</package>
 

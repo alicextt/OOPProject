@@ -12,7 +12,8 @@ import java.util.Set;
  * The persistent class for the Project database table.
  * 
  */
-@Entity
+@Entity(name = "Project")
+@Table(name="Project")
 @NamedQuery(name = "Project.findAll", query = "SELECT p FROM Project p")
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
