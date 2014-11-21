@@ -17,13 +17,14 @@
 		<action name="URLRedirection" class="com.login.URLRedirection">
 			<result name="viewmyprojects"> /WEB-INF/pages/MyProjects.jsp</result>
 			<result name="createprojects"> /WEB-INF/pages/NewProject.jsp</result>
+			<result name="index">/WEB-INF/pages/index.jsp</result>
 		</action>
-		<action name="ProjectAction" class="com.login.ProjectAction">
+		<action name="ProjectAction" class="com.project.ProjectAction">
 			<result name="success"> /WEB-INF/pages/ViewProject.jsp</result>
 		</action>
 
 
 	</package>
 
-
+	<constant name="struts.devMode" value="true" />	
 </struts> 

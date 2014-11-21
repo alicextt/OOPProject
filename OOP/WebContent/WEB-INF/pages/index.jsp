@@ -56,9 +56,11 @@
 							</a>
 								<div class="collapse" id="toggleDemo0" style="height: 0px;">
 									<ul class="nav nav-list">
-										<li><a href="#">My Task</a></li>
-										<li><a href="#">Finished Task</a></li>
-										<li><a href="#">Upcoming Task</a></li>
+										<li><s:url id="urlValue" action="URLRedirection">
+												<s:param name="url">index</s:param>
+											</s:url> <s:a href="%{urlValue}">My Tasks</s:a></li>
+										<li><a href="#">Create Task</a></li>
+										<li><a href="#">Edit Task</a></li>
 									</ul>
 								</div></li>
 							<li><a href="#" data-toggle="collapse" data-target="#team"
@@ -114,11 +116,14 @@
 		</div>
 		<div class="col-sm-9 col-md-10 affix-content">
 			<div class="container">
+				<!-- this is a link to the google folder -->
 				<div>
 					<img alt="Logo.jpg" src="img/FIL Logo.jpg" hspace="0" vspace="20"
 						style="float: left"> <a
 						href="https://drive.google.com/a/scu.edu/file/d/0BzYeTJK5yum0dXhpNWZSY09RaG8/view?usp=sharing"
-						style="float: right; padding: 30px">Google Folder</a>
+						style="float: right; padding: 30px"><span
+						class="glyphicon glyphicon-folder-open" style="padding: 10px"></span>Google
+						Folder</a>
 
 				</div>
 
@@ -128,22 +133,26 @@
 						${user.getLastName()} ${user.getFirstName()}
 					</h3>
 				</div>
-				<p> Here are your task status</p>
+				<p>Here are your task status</p>
 				<%
-							User u = (User) (session.getAttribute("user"));
-						%>
-				<table class="table table-bordered" style="table-layout: auto">
+					User u = (User) (session.getAttribute("user"));
+				%>
+				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Project name</th>
+					<!--  		<th>Project Id</th>  -->
+							<th>Project Name</th>
 							<th>Task Description</th>
 							<th>Task Start Date</th>
 							<th>Task End Date</th>
 							<th>Task Status</th>
 						</tr>
 					</thead>
-					<% for(Task s: u.getTasks()) {%>
+					<%
+						for (Task s : u.getTasks()) {
+					%>
 					<tr>
+					<!--  	<td><%=s.getProjectintask().getIdProject()%></td>-->
 						<td><%=s.getProjectintask().getName()%></td>
 						<td><%=s.getDescription()%></td>
 						<td><%=Project.dateToStr(s.getStartDate())%></td>
@@ -151,10 +160,9 @@
 						<td><%=s.getStatus()%></td>
 					</tr>
 					<%
-					}
+						}
 					%>
 				</table>
-
 			</div>
 		</div>
 	</div>
