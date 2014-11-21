@@ -1,3 +1,5 @@
+<%@ page import="model.*"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
@@ -126,7 +128,32 @@
 						${user.getLastName()} ${user.getFirstName()}
 					</h3>
 				</div>
-
+				<p> Here are your task status</p>
+				<%
+							User u = (User) (session.getAttribute("user"));
+						%>
+				<table class="table table-bordered" style="table-layout: auto">
+					<thead>
+						<tr>
+							<th>Project name</th>
+							<th>Task Description</th>
+							<th>Task Start Date</th>
+							<th>Task End Date</th>
+							<th>Task Status</th>
+						</tr>
+					</thead>
+					<% for(Task s: u.getTasks()) {%>
+					<tr>
+						<td><%=s.getProjectintask().getName()%></td>
+						<td><%=s.getDescription()%></td>
+						<td><%=Project.dateToStr(s.getStartDate())%></td>
+						<td><%=Project.dateToStr(s.getEndDate())%></td>
+						<td><%=s.getStatus()%></td>
+					</tr>
+					<%
+					}
+					%>
+				</table>
 
 			</div>
 		</div>

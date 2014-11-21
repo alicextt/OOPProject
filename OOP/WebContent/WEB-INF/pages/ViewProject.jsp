@@ -168,27 +168,30 @@
 							<td><%=p.getProjectStatus()%></td>
 						</tr>
 					</table>
-					<p> Team members:</p>
-					<div style="margin:20px">
-					<table class="table table-bordered" >
-					<thead>
-						<tr>
-								<th >First name</th>
-								<th >Last name</th>
-						</tr>
-						</thead>	
+					<hr>
+					<p>Team members:</p>
+					<div style="margin: 20px">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>First name</th>
+									<th>Last name</th>
+									<th>Email</th>
+								</tr>
+							</thead>
 							<%
-								for (User u : p.getUsers()) {
+							for (User u : p.getUsers()) {
 							%>
-							<tr>	
-							<td><%=u.getFirstName()%></td>
-							<td><%=u.getLastName() %></td>
+							<tr>
+								<td><%=u.getFirstName()%></td>
+								<td><%=u.getLastName()%></td>
+								<td><a href="mailto:<%=u.getEmail()%>"><%=u.getEmail()%></a></td>
 							</tr>
 							<%
 								}
 							%>
-						
-					</table>
+
+						</table>
 					</div>
 				</div>
 

@@ -51,6 +51,18 @@ public class Project implements Serializable {
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "projects")
 	private Set<User> users;
 
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="projectintask")
+	private Set<Task> tasks;
+	
+
+	public Set<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(Set<Task> tasks) {
+		this.tasks = tasks;
+	}
+
 	public Project() {
 	}
 

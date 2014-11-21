@@ -41,6 +41,17 @@ public class User implements Serializable {
 	@JoinTable(name = "Team", joinColumns = @JoinColumn(name = "UserName"), inverseJoinColumns = @JoinColumn(name = "IdProject"))
 	private Set<Project> projects;
 
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="userintask")
+	private Set<Task> tasks;
+	
+	public Set<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(Set<Task> tasks) {
+		this.tasks = tasks;
+	}
+
 	public Set<Project> getProjects() {
 		return projects;
 	}
@@ -125,7 +136,7 @@ public class User implements Serializable {
 	}
 
 //	public static void main(String[] args){
-//		EntityManagerFactory emf = Persistence.createEntityManagerFactory("User");
+//		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersistenceUnit");
 //		EntityManager em = emf.createEntityManager();
 ////		TypedQuery<Object []> query=em.createQuery("select u.projects from user u join u.projects p ", Object [].class);
 ////		System.out.println(query);
@@ -137,8 +148,8 @@ public class User implements Serializable {
 //				.createNamedQuery("User.findByusername", User.class);
 //		querybyusername.setParameter("userName", "admin");
 //		List<User> result = querybyusername.getResultList();
-//		Set<Project> s=result.get(0).getProjects();
-//		for(Project ss:s){
+//		Set<Task> s=result.get(0).getTasks();
+//		for(Task ss:s){
 //			System.out.println(ss);
 //		}
 //		
