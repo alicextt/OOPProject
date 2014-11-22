@@ -141,7 +141,7 @@
 					User u = (User) (session.getAttribute("user"));
 				%>
 				<div class="container">
-					<s:form aciton="" cssClass="form-horizontal">
+					<s:form action="CreateProject" cssClass="form-horizontal">
 						<div class="form-group">
 							<label class="control-label col-xs-2">Project Name:</label>
 							<div class="col-xs-8">
@@ -154,16 +154,16 @@
 						<div class="form-group">
 							<label class="control-label col-xs-2">Start Date:</label>
 							<div class="col-xs-3">
-								<sj:datepicker name="newproject.startDate"
-									displayFormat="dd-mm-yy" />
+								<sj:datepicker name="startdate"
+									displayFormat="yy-mm-dd" />
 							</div>
 
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-2">End Date:</label>
 							<div class="col-xs-3">
-								<sj:datepicker name="newproject.endDate"
-									displayFormat="dd-mm-yy" />
+								<sj:datepicker name="enddate"
+									displayFormat="yy-mm-dd" />
 							</div>
 						</div>
 

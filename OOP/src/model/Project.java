@@ -14,27 +14,37 @@ import java.util.Set;
  */
 @Entity(name = "Project")
 @Table(name="Project")
-@NamedQuery(name = "Project.findAll", query = "SELECT p FROM Project p")
+@NamedQueries({ 
+	@NamedQuery(name = "Project.getMaxID", query = "Select max(p.idProject) as maxid from Project p"),
+@NamedQuery(name = "Project.findAll", query = "SELECT p FROM Project p")})
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(name="IdProject")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idProject;
 
 	@Lob
+	@Column(name="Description")
 	private String description;
 
 	@Temporal(TemporalType.DATE)
+	@Column(name="EndDate")
 	private Date endDate;
 
 	@Temporal(TemporalType.DATE)
+	@Column(name="LastModifiedDate")
 	private Date lastModifiedDate;
 
+	@Column(name="Name")
 	private String name;
 
 	@Lob
+	@Column(name="ProjectOutcome")
 	private String projectOutcome;
 
+	@Column(nullable = true, name="ProjectStatus")
 	private String projectStatus;
 
 	public Set<User> getUsers() {
@@ -46,6 +56,7 @@ public class Project implements Serializable {
 	}
 
 	@Temporal(TemporalType.DATE)
+	@Column(name="StartDate")
 	private Date startDate;
 
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "projects")
@@ -158,5 +169,27 @@ public class Project implements Serializable {
 		return false;
 
 	}
+	
+//	public static void main(String[] args){
+//	EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersistenceUnit");
+//	EntityManager em = emf.createEntityManager();
+////	TypedQuery<Object []> query=em.createQuery("select u.projects from user u join u.projects p ", Object [].class);
+////	System.out.println(query);
+////	List<Object[]> result=query.getResultList();
+////	for (Object[] data : result)
+////		System.out.println("user name =" + data[0] + " project name =  "
+////				+ data[1]);
+//	Project newproject=new Project();
+//	newproject.setIdProject(203);
+//	newproject.setDescription("dfwef");
+//	newproject.setName("mobile");
+//	newproject.setStartDate(new Date());
+//	EntityTransaction transaction = em.getTransaction();
+//	transaction.begin();
+//	em.persist(newproject);
+//	transaction.commit();
+//	em.close();	
+//	
+//	}
 
 }

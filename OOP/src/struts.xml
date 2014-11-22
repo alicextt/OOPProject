@@ -14,6 +14,10 @@
 			<result name="success">login.jsp</result>
 			<result name="input">signup.jsp</result>
 		</action>
+		<action name="CreateProject" class="com.project.CreateProjectAction">
+			<result name="success"> /WEB-INF/pages/MyProjects.jsp</result>
+			<result name="input">/WEB-INF/pages/NewProject.jsp</result>
+		</action>
 		<action name="URLRedirection" class="com.login.URLRedirection">
 			<result name="viewmyprojects"> /WEB-INF/pages/MyProjects.jsp</result>
 			<result name="createprojects"> /WEB-INF/pages/NewProject.jsp</result>
@@ -22,9 +26,9 @@
 		<action name="ProjectAction" class="com.project.ProjectAction">
 			<result name="success"> /WEB-INF/pages/ViewProject.jsp</result>
 		</action>
-
+		
 
 	</package>
 
-	<constant name="struts.devMode" value="true" />	
+	<constant name="struts.devMode" value="true" />
 </struts> 
