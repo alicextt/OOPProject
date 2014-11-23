@@ -3,15 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
-<%
-    HttpSession sess = request.getSession(true);
-    if (sess.getAttribute("user")==null)
-    {
-    %>
-        <jsp:forward page="/login.jsp?msg=You will have to login first in order to access other pages"></jsp:forward>
-    <%
-    }
-%>
 
 <!DOCTYPE html>
 <html>
