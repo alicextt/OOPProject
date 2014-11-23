@@ -70,4 +70,16 @@ public class ProjectServiceImp implements ProjectService {
 		 return maxId + 1;
 		 }
 
+	@Override
+	public void updateproject() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteproject() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -3,6 +3,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%
+    HttpSession sess = request.getSession(true);
+    if (sess.getAttribute("user")==null)
+    {
+    %>
+        <jsp:forward page="/login.jsp?msg=You will have to login first in order to access other pages"></jsp:forward>
+    <%
+    }
+%>
 
 <!DOCTYPE html>
 <html>
@@ -108,6 +117,11 @@
 									class="glyphicon glyphicon-calendar"></span> Timeline </a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-cog"></span>
 									My Profile</a></li>
+							<li><s:url id="urlValue" action="URLRedirection">
+									<s:param name="url">logout</s:param>
+								</s:url><s:a href="%{urlValue}"><span class="glyphicon glyphicon-off"></span>
+									Log Out
+							</s:a></li>
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
@@ -140,7 +154,7 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-					<!--  		<th>Project Id</th>  -->
+							<!--  		<th>Project Id</th>  -->
 							<th>Project Name</th>
 							<th>Task Description</th>
 							<th>Task Start Date</th>
@@ -152,7 +166,7 @@
 						for (Task s : u.getTasks()) {
 					%>
 					<tr>
-					<!--  	<td><%=s.getProjectintask().getIdProject()%></td>-->
+						<!--  	<td><%=s.getProjectintask().getIdProject()%></td>-->
 						<td><%=s.getProjectintask().getName()%></td>
 						<td><%=s.getDescription()%></td>
 						<td><%=Project.dateToStr(s.getStartDate())%></td>
