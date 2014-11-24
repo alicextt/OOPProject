@@ -1,12 +1,16 @@
 package com.project;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
 import model.Project;
+import model.User;
 import DAO.ProjectService;
 import DAO.ProjectServiceImp;
+import DAO.UserService;
+import DAO.UserServiceImp;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -36,6 +40,9 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 
 		ProjectService ps=new ProjectServiceImp();
 		Project p=ps.findbyname(name);
+//		UserService us=new UserServiceImp();
+//		List<String> usrlist=us.getallUser();
+//		session.put("usrlist", usrlist);
 		session.put("project", p);
 		return SUCCESS;
 	}

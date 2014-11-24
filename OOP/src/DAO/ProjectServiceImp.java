@@ -82,4 +82,22 @@ public class ProjectServiceImp implements ProjectService {
 		
 	}
 
+	@Override
+	public void addUsertoProject(Project p, User u) {
+		
+		Set<User> set1=p.getUsers();
+		set1.add(u);
+		p.setUsers(set1);
+		Set<Project> set2=u.getProjects();
+		set2.add(p);
+		u.setProjects(set2);
+		EntityManager em=emf.createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.merge(u);
+		transaction.commit();
+		em.close();
+		
+	}
+
 }

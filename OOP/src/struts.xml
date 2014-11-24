@@ -32,7 +32,18 @@
 		<action name="ProjectAction" class="com.project.ProjectAction">
 			<result name="success"> /WEB-INF/pages/ViewProject.jsp</result>
 		</action>
+		<action name="addMemberAction" class="com.project.AddUserToProject">
+			<result name="success">/WEB-INF/pages/ViewProject.jsp</result>
+		</action>
 
+
+
+	</package>
+
+	<package name="select" extends="json-default">
+		<action name="selectUser" class="com.project.selectUser">
+			<result name="success" type="json" />
+		</action>
 
 	</package>
 

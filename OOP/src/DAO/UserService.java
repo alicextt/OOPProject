@@ -10,4 +10,6 @@ public interface UserService {
 	boolean addUser(User u);
 	void updateUser(User u);
 	void deleteUser(User u);
+	List<String>  getallUser();
+	
 }

@@ -2,10 +2,14 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 
 <%@ page import="model.*"%>
+<%@ page import="java.util.List"%>
+
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -29,6 +33,7 @@
 	color: white;
 }
 </style>
+<sj:head />
 
 </head>
 <body>
@@ -136,6 +141,9 @@
 				</div>
 				<%
 					Project p = (Project) (session.getAttribute("project"));
+
+					List<String> usrlist = (List<String>) (session
+							.getAttribute("usrlist"));
 				%>
 
 
@@ -173,7 +181,7 @@
 								<td><%=p.getProjectStatus()%></td>
 							</tr>
 						</table>
-						<table class="table table-striped " >
+						<table class="table table-striped ">
 							<thead>
 								<tr>
 									<th>Description</th>
@@ -189,7 +197,7 @@
 						<h4>Task Details</h4>
 
 						<div style="margin: 20px">
-							<table class="table table-striped" >
+							<table class="table table-striped">
 								<thead>
 									<tr>
 										<th>Assigned To</th>
@@ -218,7 +226,8 @@
 							<s:url id="urlValue" action="URLRedirection" encode="true">
 								<s:param name="url">createTask</s:param>
 							</s:url>
-							<s:a href="%{urlValue}" cssClass="btn btn-info " style="margin-left:45%">Add a Task</s:a>
+							<s:a href="%{urlValue}" cssClass="btn btn-info "
+								style="margin-left:45%">Add a Task</s:a>
 						</div>
 
 					</div>
@@ -247,10 +256,20 @@
 								%>
 
 							</table>
-							<s:url id="urlValue" action="URLRedirection" encode="true">
-								<s:param name="url">createTask</s:param>
-							</s:url>
-							<s:a href="%{urlValue}" cssClass="btn btn-info " style="margin-left:45%">Add a Member</s:a>
+							<s:form action="addMemberAction">
+								<h5>Select a user to add:</h5>
+								<div style="margin: 20px">
+									<table class="table table-striped" style="table-layout:fixed;width:300px;">
+										<tr>
+											<td><s:url var="remoteurl" action="selectUser" /> <sj:select
+													href="%{remoteurl}" id="echo" name="chooseuser" list="usrList"
+													emptyOption="false" headerKey="-1"
+													headerValue="Please Select a User"  /></td>
+											<td><s:submit value="Add" style="width:70px" /></td>
+										</tr>
+									</table>
+								</div>
+							</s:form>
 
 						</div>
 

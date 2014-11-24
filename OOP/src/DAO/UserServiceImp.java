@@ -1,5 +1,6 @@
 package DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -61,6 +62,26 @@ public class UserServiceImp implements UserService {
 	public void deleteUser(User u) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<String> getallUser() {
+	EntityManager em = emf.createEntityManager();
+		
+		// typerdquery is type safer
+		TypedQuery<User> query = em
+				.createNamedQuery("User.findAll", User.class);
+
+		List<User> result = query.getResultList();
+		
+		em.close();
+		
+		List<String> usrlist = new ArrayList<String>();
+		for(User u: result){
+			usrlist.add(u.getUserName());
+		}
+		
+		return usrlist;
 	}
 
 }
