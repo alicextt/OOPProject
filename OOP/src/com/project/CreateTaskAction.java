@@ -21,7 +21,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class CreateTaskAction extends ActionSupport implements SessionAware{
 
-	private String projectname;
 	private String startdate;
 	private String enddate;
 	private Task newtask;
@@ -74,13 +73,6 @@ public class CreateTaskAction extends ActionSupport implements SessionAware{
 		this.enddate = enddate;
 	}
 
-	public String getProjectname() {
-		return projectname;
-	}
-
-	public void setProjectname(String projectname) {
-		this.projectname = projectname;
-	}
 
 	public Task getNewtask() {
 		return newtask;

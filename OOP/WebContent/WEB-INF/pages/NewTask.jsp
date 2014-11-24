@@ -147,13 +147,7 @@
 				<div class="container">
 					<s:form action="CreateTask" cssClass="form-horizontal">
 
-						<div class="form-group">
-							<label class="control-label col-xs-2">Task name:</label>
-							<div class="col-xs-8">
-								<s:textfield name="projectname" cssClass="form-control"
-									placeholder="Enter description" />
-							</div>
-						</div>
+					
 
 						<div class="form-group">
 							<label class="control-label col-xs-2">Status</label>
