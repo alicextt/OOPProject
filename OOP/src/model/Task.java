@@ -12,7 +12,9 @@ import java.util.Date;
  * 
  */
 @Entity(name="Task")
-@NamedQuery(name="Task.findAll", query="SELECT t FROM Task t")
+@NamedQueries({ 
+	@NamedQuery(name = "Task.getMaxID", query = "Select max(t.idTask) as maxid from Task t"),
+@NamedQuery(name="Task.findAll", query="SELECT t FROM Task t")})
 public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
 

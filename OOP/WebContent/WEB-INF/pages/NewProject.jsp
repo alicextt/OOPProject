@@ -31,8 +31,6 @@
 </head>
 <body>
 	<!-- ${user.getLastName()}, ${user.getFirstName()}! You are logged in! -->
-
-
 	<div class="row affix-row">
 		<div class="col-sm-3 col-md-2 affix-sidebar">
 			<div class="sidebar-nav">
@@ -62,7 +60,7 @@
 										<li><s:url id="urlValue" action="URLRedirection">
 												<s:param name="url">index</s:param>
 											</s:url> <s:a href="%{urlValue}">My Tasks</s:a></li>
-										<li><a href="#">Create Task</a></li>
+								
 										<li><a href="#">Edit Task</a></li>
 									</ul>
 								</div></li>
@@ -93,7 +91,6 @@
 												encode="true">
 												<s:param name="url">createprojects</s:param>
 											</s:url> <s:a href="%{urlValue}">Create Project</s:a></li>
-										<li><a href="#">Edit Project</a></li>
 									</ul>
 								</div></li>
 							<li><a href="#" data-toggle="collapse"
@@ -111,6 +108,13 @@
 									class="glyphicon glyphicon-calendar"></span> Timeline </a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-cog"></span>
 									My Profile</a></li>
+							<li><s:url id="urlValue" action="URLRedirection">
+									<s:param name="url">logout</s:param>
+								</s:url>
+								<s:a href="%{urlValue}">
+									<span class="glyphicon glyphicon-off"></span>
+									Log Out
+							</s:a></li>
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
@@ -129,7 +133,6 @@
 						Folder</a>
 
 				</div>
-
 				<div class="page-header" style="clear: both">
 					<h3>
 						<span class="glyphicon glyphicon-th-list"></span> Hello,

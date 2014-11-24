@@ -58,9 +58,11 @@
 							</a>
 								<div class="collapse" id="toggleDemo0" style="height: 0px;">
 									<ul class="nav nav-list">
-										<li><a href="#">My Task</a></li>
-										<li><a href="#">Finished Task</a></li>
-										<li><a href="#">Upcoming Task</a></li>
+										<li><s:url id="urlValue" action="URLRedirection">
+												<s:param name="url">index</s:param>
+											</s:url> <s:a href="%{urlValue}">My Tasks</s:a></li>
+								
+										<li><a href="#">Edit Task</a></li>
 									</ul>
 								</div></li>
 							<li><a href="#" data-toggle="collapse" data-target="#team"
@@ -81,12 +83,15 @@
 							</a>
 								<div class="collapse" id="project" style="height: 0px;">
 									<ul class="nav nav-list">
+
 										<li><s:url id="urlValue" action="URLRedirection"
 												encode="true">
 												<s:param name="url">viewmyprojects</s:param>
-											</s:url> <s:a href="%{urlValue}">MyProjects</s:a></li>
-										<li><a href="#">Create Project</a></li>
-										<li><a href="#">Edit Project</a></li>
+											</s:url> <s:a href="%{urlValue}">My Projects</s:a></li>
+										<li><s:url id="urlValue" action="URLRedirection"
+												encode="true">
+												<s:param name="url">createprojects</s:param>
+											</s:url> <s:a href="%{urlValue}">Create Project</s:a></li>
 									</ul>
 								</div></li>
 							<li><a href="#" data-toggle="collapse"
@@ -104,6 +109,13 @@
 									class="glyphicon glyphicon-calendar"></span> Timeline </a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-cog"></span>
 									My Profile</a></li>
+							<li><s:url id="urlValue" action="URLRedirection">
+									<s:param name="url">logout</s:param>
+								</s:url>
+								<s:a href="%{urlValue}">
+									<span class="glyphicon glyphicon-off"></span>
+									Log Out
+							</s:a></li>
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
@@ -112,22 +124,22 @@
 		</div>
 		<div class="col-sm-9 col-md-10 affix-content">
 			<div class="container">
+				<!-- this is a link to the google folder -->
 				<div>
 					<img alt="Logo.jpg" src="img/FIL Logo.jpg" hspace="0" vspace="20"
 						style="float: left"> <a
 						href="https://drive.google.com/a/scu.edu/file/d/0BzYeTJK5yum0dXhpNWZSY09RaG8/view?usp=sharing"
-						style="float: right; padding: 30px">Google Folder</a>
+						style="float: right; padding: 30px"><span
+						class="glyphicon glyphicon-folder-open" style="padding: 10px"></span>Google
+						Folder</a>
 
 				</div>
-
 				<div class="page-header" style="clear: both">
 					<h3>
 						<span class="glyphicon glyphicon-th-list"></span> Project Participated
 					</h3>
 				</div>
 
-
-				
 				<div class="project-table">
 					<table class="table table-bordered">
 						<thead>
@@ -135,7 +147,7 @@
 								<th>Name</th>
 								<th>Start Date</th>
 								<th>End Date</th>
-								<th>Project Outcome</th>
+							<!--  <th>Project Outcome</th>-->	
 								<th>Project Status</th>
 							</tr>
 						</thead>
@@ -145,16 +157,15 @@
 						%>
 
 						<tr>
-							<td>
-							<s:url id="urlValue" action="ProjectAction"
-												encode="true">
-												<s:param name="name"><%=p.getName()%></s:param>
-											</s:url> <s:a href="%{urlValue}"><%=p.getName()%></s:a>
-							
-						<!--  	<td><%=p.getDescription()%></td>-->
+							<td><s:url id="urlValue" action="ProjectAction"
+									encode="true">
+									<s:param name="name"><%=p.getName()%></s:param>
+								</s:url> <s:a href="%{urlValue}">
+									<span class="glyphicon glyphicon-zoom-in" ></span>
+								</s:a>    <%=p.getName()%></td> <!--  	<td><%=p.getDescription()%></td>-->
 							<td><%=Project.dateToStr(p.getStartDate())%></td>
 							<td><%=Project.dateToStr(p.getEndDate())%></td>
-							<td><%=p.getProjectOutcome()%></td>
+						<!--	<td><%=p.getProjectOutcome()%></td>-->
 							<td><%=p.getProjectStatus()%></td>
 						</tr>
 

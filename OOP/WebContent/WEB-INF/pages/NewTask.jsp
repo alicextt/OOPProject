@@ -1,8 +1,9 @@
 <%@ page import="model.*"%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -26,7 +27,7 @@
 	color: white;
 }
 </style>
-
+<sj:head />
 </head>
 <body>
 	<!-- ${user.getLastName()}, ${user.getFirstName()}! You are logged in! -->
@@ -59,7 +60,7 @@
 										<li><s:url id="urlValue" action="URLRedirection">
 												<s:param name="url">index</s:param>
 											</s:url> <s:a href="%{urlValue}">My Tasks</s:a></li>
-								
+
 										<li><a href="#">Edit Task</a></li>
 									</ul>
 								</div></li>
@@ -109,8 +110,7 @@
 									My Profile</a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
 									<s:param name="url">logout</s:param>
-								</s:url>
-								<s:a href="%{urlValue}">
+								</s:url> <s:a href="%{urlValue}">
 									<span class="glyphicon glyphicon-off"></span>
 									Log Out
 							</s:a></li>
@@ -133,42 +133,73 @@
 
 				</div>
 
+				<%
+					Project p = (Project) (session.getAttribute("project"));
+				%>
 				<div class="page-header" style="clear: both">
 					<h3>
-						<span class="glyphicon glyphicon-th-list"></span> Hello,
-						${user.getLastName()} ${user.getFirstName()}
+						<span class="glyphicon glyphicon-th-list"></span>
+						<%=p.getName()%>
+
 					</h3>
 				</div>
-				<p>Here are your task status</p>
-				<%
-					User u = (User) (session.getAttribute("user"));
-				%>
-				<table class="table table-striped" style="width: 90%">
-					<thead>
-						<tr>
-							<!--  		<th>Project Id</th>  -->
-							<th>Project Name</th>
-							<th>Task Description</th>
-							<th>Task Start Date</th>
-							<th>Task End Date</th>
-							<th>Task Status</th>
-						</tr>
-					</thead>
-					<%
-						for (Task s : u.getTasks()) {
-					%>
-					<tr>
-						<!--  	<td><%=s.getProjectintask().getIdProject()%></td>-->
-						<td><%=s.getProjectintask().getName()%></td>
-						<td><%=s.getDescription()%></td>
-						<td><%=Project.dateToStr(s.getStartDate())%></td>
-						<td><%=Project.dateToStr(s.getEndDate())%></td>
-						<td><%=s.getStatus()%></td>
-					</tr>
-					<%
-						}
-					%>
-				</table>
+
+				<div class="container">
+					<s:form action="CreateTask" cssClass="form-horizontal">
+
+						<div class="form-group">
+							<label class="control-label col-xs-2">Task name:</label>
+							<div class="col-xs-8">
+								<s:textfield name="projectname" cssClass="form-control"
+									placeholder="Enter description" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-xs-2">Status</label>
+							<div class="col-xs-8">
+								<s:textfield name="newtask.status" cssClass="form-control"
+									placeholder="Enter outcome" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">Assigned user:</label>
+							<div class="col-xs-8">
+								<s:textfield name="newtask.userName" cssClass="form-control"
+									placeholder="Enter user" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-xs-2">Start Date:</label>
+							<div class="col-xs-3">
+								<sj:datepicker name="startdate" displayFormat="yy-mm-dd" />
+							</div>
+
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">End Date:</label>
+							<div class="col-xs-3">
+								<sj:datepicker name="enddate" displayFormat="yy-mm-dd" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-xs-2">Task Description:</label>
+							<div class="col-xs-8">
+								<s:textarea name="newtask.description" cssClass="form-control"
+									placeholder="Enter description" rows="4" />
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<div class=" col-xs-10">
+								<s:submit value="Submit" cssClass="btn btn-primary "></s:submit>
+							</div>
+						</div>
+					</s:form>
+				</div>
 			</div>
 		</div>
 	</div>
