@@ -150,25 +150,12 @@
 					<li><a data-toggle="tab" href="#sectionB">Task</a></li>
 					<li><a data-toggle="tab" href="#sectionC">Team</a></li>
 				</ul>
-				<div class="tab-content" style="width:90%">
+				<div class="tab-content" style="width: 90%">
 					<div id="sectionA" class="tab-pane fade in active">
 						<br>
 						<h4>About This Project</h4>
-						<table class="table table-bordered ">
-							<thead>
-								<tr>
-									<th width="200px">Name</th>
-									<th>Description</th>
 
-								</tr>
-							</thead>
-
-							<tr>
-								<td><%=p.getName()%></td>
-								<td><%=p.getDescription()%></td>
-							</tr>
-						</table>
-						<table class="table table-bordered">
+						<table class="table table-striped center" style="width: 90%">
 							<thead>
 								<tr>
 									<th>Start Date</th>
@@ -186,13 +173,23 @@
 								<td><%=p.getProjectStatus()%></td>
 							</tr>
 						</table>
+						<table class="table table-striped " >
+							<thead>
+								<tr>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tr>
+								<td><p><%=p.getDescription()%></p></td>
+							</tr>
+						</table>
 					</div>
 					<div id="sectionB" class="tab-pane fade">
 						<br>
 						<h4>Task Details</h4>
-						
+
 						<div style="margin: 20px">
-							<table class="table table-bordered">
+							<table class="table table-striped" >
 								<thead>
 									<tr>
 										<th>Assigned To</th>
@@ -217,11 +214,11 @@
 								%>
 
 							</table>
-							
-							<s:url id="urlValue" action="URLRedirection"
-												encode="true">
-												<s:param name="url">createTask</s:param>
-											</s:url> <s:a href="%{urlValue}" cssClass="btn btn-info ">Add Task</s:a>					
+
+							<s:url id="urlValue" action="URLRedirection" encode="true">
+								<s:param name="url">createTask</s:param>
+							</s:url>
+							<s:a href="%{urlValue}" cssClass="btn btn-info " style="margin-left:45%">Add a Task</s:a>
 						</div>
 
 					</div>
@@ -229,7 +226,7 @@
 						<br>
 						<h4>Team Members</h4>
 						<div style="margin: 20px">
-							<table class="table table-bordered">
+							<table class="table table-striped">
 								<thead>
 									<tr>
 										<th>First name</th>
@@ -250,16 +247,17 @@
 								%>
 
 							</table>
-							<s:url id="urlValue" action="URLRedirection"
-												encode="true">
-												<s:param name="url">createTask</s:param>
-											</s:url> <s:a href="%{urlValue}" cssClass="btn btn-info ">Add Member</s:a>					
-						
+							<s:url id="urlValue" action="URLRedirection" encode="true">
+								<s:param name="url">createTask</s:param>
+							</s:url>
+							<s:a href="%{urlValue}" cssClass="btn btn-info " style="margin-left:45%">Add a Member</s:a>
+
 						</div>
 
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 </body>
 </html>

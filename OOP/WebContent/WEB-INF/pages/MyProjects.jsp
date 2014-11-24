@@ -141,7 +141,7 @@
 				</div>
 
 				<div class="project-table">
-					<table class="table table-bordered">
+					<table class="table table-striped" >
 						<thead>
 							<tr>
 								<th>Name</th>
