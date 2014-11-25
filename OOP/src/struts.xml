@@ -44,6 +44,10 @@
 		<action name="selectUser" class="com.project.selectUser">
 			<result name="success" type="json" />
 		</action>
+		
+		<action name="assignTask" class="com.project.GetTeamUser">
+			<result name="success" type="json" />
+		</action>
 
 	</package>
 

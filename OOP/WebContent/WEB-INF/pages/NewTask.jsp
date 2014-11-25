@@ -147,20 +147,23 @@
 				<div class="container">
 					<s:form action="CreateTask" cssClass="form-horizontal">
 
-					
-
 						<div class="form-group">
 							<label class="control-label col-xs-2">Status</label>
-							<div class="col-xs-8">
-								<s:textfield name="newtask.status" cssClass="form-control"
-									placeholder="Enter outcome" />
+							<div class="col-xs-2">
+								<s:select name="newtask.status" headerKey="-1"
+									headerValue="Select status"
+									list="#{'1':'not started','2':'started', '3':'finished'}"
+									value="selectedMonth" required="true" cssClass="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-2">Assigned user:</label>
-							<div class="col-xs-8">
-								<s:textfield name="newtask.userName" cssClass="form-control"
-									placeholder="Enter user" />
+							<div class="col-xs-2">
+							
+							<s:url var="taskurl" action="assignTask" /> <sj:select
+												href="%{taskurl}" id="tashecho" name="newtask.userName"
+												list="usrList" emptyOption="false" headerKey="-1"
+												headerValue="Assigned to" cssClass="form-control" />
 							</div>
 						</div>
 

@@ -46,6 +46,14 @@ public class CreateTaskAction extends ActionSupport implements SessionAware{
 	public String execute() {
 		
 		setTaskdate();
+		String status=newtask.getStatus();
+		if(status.equals("1"))
+			newtask.setStatus("not started");
+		else if(status.equals("2"))
+			newtask.setStatus("started");
+		else
+			newtask.setStatus("finished");
+			
 		Project pp=(Project) session.get("project");
 		TaskService ts=new TaskServiceImp();
 		ts.addTask(newtask, pp);

@@ -141,9 +141,6 @@
 				</div>
 				<%
 					Project p = (Project) (session.getAttribute("project"));
-
-					List<String> usrlist = (List<String>) (session
-							.getAttribute("usrlist"));
 				%>
 
 
@@ -211,7 +208,7 @@
 									for (Task t : p.getTasks()) {
 								%>
 								<tr>
-									<td><%=t.getUserintask().getFirstName()%>,<%=t.getUserintask().getLastName()%></td>
+									<td><%=t.getUserintask().getFirstName()%>, <%=t.getUserintask().getLastName()%></td>
 									<td><%=t.getDescription()%></td>
 									<td><%=Project.dateToStr(t.getStartDate())%></td>
 									<td><%=Project.dateToStr(t.getEndDate())%></td>
@@ -233,11 +230,27 @@
 					</div>
 					<div id="sectionC" class="tab-pane fade">
 						<br>
+						<s:form action="addMemberAction">
+							<h5>Add a user to this project:</h5>
+							<div style="margin: 20px">
+								<table class="table table-striped"
+									style="table-layout: fixed; width: 350px;">
+									<tr>
+										<td><s:url var="remoteurl" action="selectUser" /> <sj:select
+												href="%{remoteurl}" id="echo" name="chooseuser"
+												list="usrList" emptyOption="false" headerKey="-1"
+												headerValue="Select a User" cssClass="form-control"/></td>
+										<td><s:submit value="Add" style="width:70px" /></td>
+									</tr>
+								</table>
+							</div>
+						</s:form>
 						<h4>Team Members</h4>
 						<div style="margin: 20px">
 							<table class="table table-striped">
 								<thead>
 									<tr>
+									<th>User name</th>
 										<th>First name</th>
 										<th>Last name</th>
 										<th>Email</th>
@@ -247,6 +260,7 @@
 									for (User u : p.getUsers()) {
 								%>
 								<tr>
+								<td><%=u.getUserName() %></td>
 									<td><%=u.getFirstName()%></td>
 									<td><%=u.getLastName()%></td>
 									<td><a href="mailto:<%=u.getEmail()%>"><%=u.getEmail()%></a></td>
@@ -256,20 +270,7 @@
 								%>
 
 							</table>
-							<s:form action="addMemberAction">
-								<h5>Select a user to add:</h5>
-								<div style="margin: 20px">
-									<table class="table table-striped" style="table-layout:fixed;width:300px;">
-										<tr>
-											<td><s:url var="remoteurl" action="selectUser" /> <sj:select
-													href="%{remoteurl}" id="echo" name="chooseuser" list="usrList"
-													emptyOption="false" headerKey="-1"
-													headerValue="Please Select a User"  /></td>
-											<td><s:submit value="Add" style="width:70px" /></td>
-										</tr>
-									</table>
-								</div>
-							</s:form>
+
 
 						</div>
 

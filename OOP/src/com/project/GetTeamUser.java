@@ -16,10 +16,12 @@ import DAO.UserServiceImp;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class selectUser extends ActionSupport {
+public class GetTeamUser extends ActionSupport implements SessionAware {
 
-    private List<String> usrList;
-    
+	private List<String> usrList;
+	private SessionMap<String, Object> session;
+	
+	
 	public List<String> getUsrList() {
 		return usrList;
 	}
@@ -31,17 +33,22 @@ public class selectUser extends ActionSupport {
 	public String execute() {
 
 		usrList = new ArrayList<String>();
-		UserService us=new UserServiceImp();
-		usrList=us.getallUser();
-	
-		
-      return SUCCESS;
-    }
+		Project p=(Project) session.get("project");
+				Set<User> u=p.getUsers();
+		for(User s:u){
+			usrList.add(s.getUserName());
+		}
 
-    public String getJSON(){
-        return execute();
-    }
+		return SUCCESS;
+	}
 
+	public String getJSON() {
+		return execute();
+	}
 
-    
+	@Override
+	public void setSession(Map<String, Object> arg0) {
+		session=(SessionMap<String, Object>) arg0;
+	}
+
 }
