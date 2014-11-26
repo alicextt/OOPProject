@@ -26,7 +26,6 @@
 	color: white;
 }
 </style>
-
 </head>
 <body>
 	<!-- ${user.getLastName()}, ${user.getFirstName()}! You are logged in! -->
@@ -59,21 +58,26 @@
 										<li><s:url id="urlValue" action="URLRedirection">
 												<s:param name="url">index</s:param>
 											</s:url> <s:a href="%{urlValue}">My Tasks</s:a></li>
-								
+
 										<li><a href="#">Edit Task</a></li>
 									</ul>
 								</div></li>
-							<li><a href="#" data-toggle="collapse" data-target="#team"
+							<li><a href="#" data-toggle="collapse" data-target="#query"
 								data-parent="#sidenav01" class="collapsed"> <span
 									class="glyphicon glyphicon-cloud"></span> Query <span
 									class="caret pull-right"></span>
 							</a>
-								<div class="collapse" id="team" style="height: 0px;">
+								<div class="collapse" id="query" style="height: 0px;">
 									<ul class="nav nav-list">
-										<li><a href="#">Query by name</a></li>
-										<li><a href="#">Query by project</a></li>
+										<li><s:url id="urlValue" action="URLRedirection" encode="true">
+												<s:param name="url">queryprojects</s:param>
+											</s:url> <s:a href="%{urlValue}">By name</s:a></li>
+										<li><s:url id="urlValue" action="URLRedirection" encode="true">
+												<s:param name="url">queryprojects</s:param>
+											</s:url> <s:a href="%{urlValue}">By project</s:a></li>
 									</ul>
-								</div></li>
+								</div>
+							</li>
 							<li class="active"><a href="#" data-toggle="collapse"
 								data-target="#project" data-parent="#sidenav01"
 								class="collapsed"> <span class="glyphicon glyphicon-lock"></span>
@@ -103,13 +107,12 @@
 
 									</ul>
 								</div></li>
-							
+
 							<li><a href="#"><span class="glyphicon glyphicon-cog"></span>
 									My Profile</a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
 									<s:param name="url">logout</s:param>
-								</s:url>
-								<s:a href="%{urlValue}">
+								</s:url> <s:a href="%{urlValue}">
 									<span class="glyphicon glyphicon-off"></span>
 									Log Out
 							</s:a></li>
