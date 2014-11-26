@@ -68,7 +68,6 @@
 												<s:param name="url">index</s:param>
 											</s:url> <s:a href="%{urlValue}">My Tasks</s:a></li>
 
-										<li><a href="#">Edit Task</a></li>
 									</ul>
 								</div></li>
 							<li><a href="#" data-toggle="collapse" data-target="#team"
@@ -159,7 +158,7 @@
 						<br>
 						<h4>About This Project</h4>
 
-						<table class="table table-striped center" style="width: 90%">
+						<table class="table table-striped center" style="table-layout: fixed">
 							<thead>
 								<tr>
 									<th>Start Date</th>

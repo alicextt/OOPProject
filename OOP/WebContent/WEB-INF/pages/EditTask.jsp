@@ -1,4 +1,5 @@
 <%@ page import="model.*"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
@@ -28,6 +29,7 @@
 }
 </style>
 <sj:head />
+
 </head>
 <body>
 	<!-- ${user.getLastName()}, ${user.getFirstName()}! You are logged in! -->
@@ -103,6 +105,7 @@
 
 									</ul>
 								</div></li>
+
 							<li><a href="#"><span class="glyphicon glyphicon-cog"></span>
 									My Profile</a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
@@ -130,62 +133,47 @@
 
 				</div>
 
-				<%
-					Project p = (Project) (session.getAttribute("project"));
-				%>
 				<div class="page-header" style="clear: both">
 					<h3>
-						<span class="glyphicon glyphicon-th-list"></span>
-						<%=p.getName()%>
-
+						<span class="glyphicon glyphicon-th-list"></span> Hello,
+						${user.getLastName()} ${user.getFirstName()}
 					</h3>
 				</div>
-
+				<h4>Modify Your Task</h4>
+				<hr>
 				<div class="container">
-					<s:form action="CreateTask" cssClass="form-horizontal">
-
-						<div class="form-group">
-							<label class="control-label col-xs-2">Status</label>
-							<div class="col-xs-2">
-								<s:select name="newtask.status" headerKey="-1"
-									headerValue="Select status"
-									list="#{'1':'not started','2':'started', '3':'finished'}"
-									value="selectedMonth" required="true" cssClass="form-control" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-2">Assigned user:</label>
-							<div class="col-xs-2">
-							
-							<s:url var="taskurl" action="assignTask" /> <sj:select
-												href="%{taskurl}" id="tashecho" name="newtask.userName"
-												list="usrList" emptyOption="false" headerKey="-1"
-												headerValue="Assigned to" cssClass="form-control" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-xs-2">Start Date:</label>
-							<div class="col-xs-3">
-								<sj:datepicker name="startdate" displayFormat="yy-mm-dd" />
-							</div>
-
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-2">End Date:</label>
-							<div class="col-xs-3">
-								<sj:datepicker name="enddate" displayFormat="yy-mm-dd" />
-							</div>
-						</div>
+					<%
+						Task t = (Task) (session.getAttribute("edittask"));
+					%>
+					<s:form action="UpdateTaskAction" cssClass="form-horizontal">
 
 						<div class="form-group">
 							<label class="control-label col-xs-2">Task Description:</label>
-							<div class="col-xs-8">
-								<s:textarea name="newtask.description" cssClass="form-control"
-									placeholder="Enter description" rows="4" />
+							<div class="col-xs-6">
+								<s:textarea name="description" cssClass="form-control" rows="1" />
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">Start Date:</label>
+							<div class="col-xs-3">
+								<sj:datepicker name="startDate" displayFormat="yy-mm-dd" />
+							</div>
 
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">Start Date:</label>
+							<div class="col-xs-3">
+								<sj:datepicker name="endDate" displayFormat="yy-mm-dd" />
+							</div>
+
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">Task Status:</label>
+							<div class="col-xs-2">
+								<s:textfield name="status" cssClass="form-control"
+									/>
+							</div>
+						</div>
 
 						<div class="form-group">
 							<div class=" col-xs-10">
@@ -194,6 +182,7 @@
 						</div>
 					</s:form>
 				</div>
+
 			</div>
 		</div>
 	</div>

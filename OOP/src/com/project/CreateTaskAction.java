@@ -27,7 +27,7 @@ public class CreateTaskAction extends ActionSupport implements SessionAware{
 	SessionMap<String, Object> session;
 	
 	private void setTaskdate(){
-		SimpleDateFormat start = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat start = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Date startd;
 		Date endd;

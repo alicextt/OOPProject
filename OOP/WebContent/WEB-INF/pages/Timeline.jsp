@@ -145,7 +145,6 @@ var timeline_data = {  // save as a global variable
 												<s:param name="url">index</s:param>
 											</s:url> <s:a href="%{urlValue}">My Tasks</s:a></li>
 
-										<li><a href="#">Edit Task</a></li>
 									</ul>
 								</div></li>
 							<li><a href="#" data-toggle="collapse" data-target="#team"

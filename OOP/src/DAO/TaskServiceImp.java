@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import model.Project;
 import model.Task;
@@ -64,5 +65,37 @@ public class TaskServiceImp implements TaskService{
 		 Integer maxId = (Integer) em2.createNamedQuery("Task.getMaxID").getSingleResult();
 		 return maxId + 1;
 		 }
+
+
+
+	@Override
+	public Task findTask(int taskid) {
+		EntityManager em=emf.createEntityManager();
+		TypedQuery<Task> query=em.createQuery("select t from Task t where t.idTask=:idTask", Task.class);
+		query.setParameter("idTask", taskid);
+		
+		try{
+			Task result=query.getSingleResult();
+			return result;
+			}catch(javax.persistence.NoResultException e){
+				System.out.println("No "+ taskid +" in database");
+			};
+			
+		
+		return null;
+	}
+
+
+
+	@Override
+	public void updateTask(Task t) {
+		EntityManager em=emf.createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.merge(t);
+		transaction.commit();
+		em.close();
+		
+	}
 
 }

@@ -36,8 +36,16 @@
 		<action name="addMemberAction" class="com.project.AddUserToProject">
 			<result name="success">/WEB-INF/pages/ViewProject.jsp</result>
 		</action>
+		<action name="EdittaskAciton" class="com.project.EditTaskAction">
+			<result name="success">/WEB-INF/pages/EditTask.jsp</result>
+			<result name="input">/WEB-INF/pages/EditTask.jsp</result>
+		</action>
 
 
+		<action name="UpdateTaskAction" class="com.project.UpdateTaskAction">
+			<result name="success">/WEB-INF/pages/index.jsp</result>
+			<result name="input">/WEB-INF/pages/index.jsp</result>
+		</action>
 
 	</package>
 
@@ -45,7 +53,7 @@
 		<action name="selectUser" class="com.project.selectUser">
 			<result name="success" type="json" />
 		</action>
-		
+
 		<action name="assignTask" class="com.project.GetTeamUser">
 			<result name="success" type="json" />
 		</action>

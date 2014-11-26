@@ -60,7 +60,6 @@
 												<s:param name="url">index</s:param>
 											</s:url> <s:a href="%{urlValue}">My Tasks</s:a></li>
 								
-										<li><a href="#">Edit Task</a></li>
 									</ul>
 								</div></li>
 							<li><a href="#" data-toggle="collapse" data-target="#team"
@@ -142,15 +141,15 @@
 				<%
 					User u = (User) (session.getAttribute("user"));
 				%>
-				<table class="table table-striped" style="width: 90%">
+				<table class="table table-striped" style="width: 95%">
 					<thead>
 						<tr>
 							<!--  		<th>Project Id</th>  -->
 							<th>Project Name</th>
-							<th>Task Description</th>
+							<th>Task Status</th>
 							<th>Task Start Date</th>
 							<th>Task End Date</th>
-							<th>Task Status</th>
+							<th>Task Description</th>
 						</tr>
 					</thead>
 					<%
@@ -159,10 +158,13 @@
 					<tr>
 						<!--  	<td><%=s.getProjectintask().getIdProject()%></td>-->
 						<td><%=s.getProjectintask().getName()%></td>
-						<td><%=s.getDescription()%></td>
+						<td><%=s.getStatus()%></td>
+						
 						<td><%=Project.dateToStr(s.getStartDate())%></td>
 						<td><%=Project.dateToStr(s.getEndDate())%></td>
-						<td><%=s.getStatus()%></td>
+						<td><%=s.getDescription()%></td>
+						<td> <s:url id="urlValue" action="EdittaskAciton" encode="true" ><s:param name="edittask"><%=s.getIdTask()%></s:param>
+						</s:url><s:a href="%{urlValue}" cssClass="form-control">Edit</s:a></td>
 					</tr>
 					<%
 						}
