@@ -111,8 +111,7 @@
 
 									</ul>
 								</div></li>
-							<li><a href="#"><span
-									class="glyphicon glyphicon-calendar"></span> Timeline </a></li>
+							
 							<li><a href="#"><span class="glyphicon glyphicon-cog"></span>
 									My Profile</a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
@@ -188,6 +187,11 @@
 								<td><p><%=p.getDescription()%></p></td>
 							</tr>
 						</table>
+						<s:url id="urlValue" action="URLRedirection" encode="true">
+								<s:param name="url">timeline</s:param>
+							</s:url>
+							<s:a href="%{urlValue}" cssClass="btn btn-info "
+								style="margin-left:45%">Get Timeline</s:a>
 					</div>
 					<div id="sectionB" class="tab-pane fade">
 						<br>

@@ -1,9 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="model.*"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-
 
 <!DOCTYPE html>
 <html>
@@ -27,9 +25,95 @@
 	color: white;
 }
 </style>
-<sj:head />
+<%
+	Project p=(Project)(session.getAttribute("project"));
+%>
+
+<script type="text/javascript">
+var timeline_data = {  // save as a global variable
+		'dateTimeFormat': 'Gregorian',
+		'wikiURL': "http://simile.mit.edu/shelf/",
+		'wikiSection': "Simile Cubism Timeline",
+
+		'events': [
+		         
+				<%for (Task t: p.getTasks()){%>
+				
+				{
+					'start' : "<%=t.getStartDate()%>",
+					'end' : "<%=t.getEndDate()%>",
+					'title' : "<%=t.getDescription()%>",
+					'description':"<%="Assigned to User: "+t.getUserName()%>",
+					'durationEvent' : true
+				},
+				
+				<%}%>
+				  {
+		              'start':"<%=p.getStartDate()%>",
+		              'end':"<%=p.getEndDate()%>",
+					'title' : "<%=p.getName()%>",
+					'description':"timeline of this project",
+					'durationEvent' : true
+				// Notes: not "false". And no trailing
+				// comma.
+				}
+				]
+	}
+</script>
+
+<script>
+	var tl;
+	function onLoad() {
+		var eventSource = new Timeline.DefaultEventSource();
+		
+		var theme1 = Timeline.ClassicTheme.create();
+		theme1.autoWidth = true; // Set the Timeline's "width" automatically.
+		// Set autoWidth on the Timeline's first band's theme,
+		// will affect all bands.
+		theme1.timeline_start = new Date(Date.UTC(1890, 0, 1));
+		theme1.timeline_stop = new Date(Date.UTC(2160, 0, 1));
+
+		var bandInfos = [ Timeline.createBandInfo({
+			eventSource : eventSource,
+			date : "<%=p.getStartDate()%>",
+			width : "70%",
+			intervalUnit : Timeline.DateTime.MONTH,
+			intervalPixels : 100,
+			theme : theme1,
+			layout : 'original' // original, overview, detailed
+
+		}), Timeline.createBandInfo({
+			date : "<%=p.getStartDate()%>",
+			width : "30%",
+			intervalUnit : Timeline.DateTime.YEAR,
+			intervalPixels : 200
+		}) ];
+
+		bandInfos[1].syncWith = 0;
+		bandInfos[1].highlight = true;
+
+		tl = Timeline.create(document.getElementById("my-timeline"), bandInfos);
+
+		var url = '.'; // The base url for image, icon and background image references in the data
+		eventSource.loadJSON(timeline_data, url); // The data was stored into the timeline_data variable.
+	}
+
+	var resizeTimerID = null;
+	function onResize() {
+		if (resizeTimerID == null) {
+			resizeTimerID = window.setTimeout(function() {
+				resizeTimerID = null;
+				tl.layout();
+			}, 500);
+		}
+	}
+</script>
+
+<script src="http://simile.mit.edu/timeline/api/timeline-api.js"
+	type="text/javascript"></script>
+
 </head>
-<body>
+<body onload="onLoad();" onresize="onResize();">
 	<!-- ${user.getLastName()}, ${user.getFirstName()}! You are logged in! -->
 	<div class="row affix-row">
 		<div class="col-sm-3 col-md-2 affix-sidebar">
@@ -60,7 +144,7 @@
 										<li><s:url id="urlValue" action="URLRedirection">
 												<s:param name="url">index</s:param>
 											</s:url> <s:a href="%{urlValue}">My Tasks</s:a></li>
-								
+
 										<li><a href="#">Edit Task</a></li>
 									</ul>
 								</div></li>
@@ -104,12 +188,12 @@
 
 									</ul>
 								</div></li>
-								<li><a href="#"><span class="glyphicon glyphicon-cog"></span>
+							
+							<li><a href="#"><span class="glyphicon glyphicon-cog"></span>
 									My Profile</a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
 									<s:param name="url">logout</s:param>
-								</s:url>
-								<s:a href="%{urlValue}">
+								</s:url> <s:a href="%{urlValue}">
 									<span class="glyphicon glyphicon-off"></span>
 									Log Out
 							</s:a></li>
@@ -131,68 +215,23 @@
 						Folder</a>
 
 				</div>
+
 				<div class="page-header" style="clear: both">
 					<h3>
 						<span class="glyphicon glyphicon-th-list"></span> Hello,
 						${user.getLastName()} ${user.getFirstName()}
 					</h3>
 				</div>
-				<%
-					User u = (User) (session.getAttribute("user"));
-				%>
-				<div class="container">
-					<s:form action="CreateProject" cssClass="form-horizontal">
-						<div class="form-group">
-							<label class="control-label col-xs-2">Project Name:</label>
-							<div class="col-xs-8">
-								<s:textfield name="newproject.name" cssClass="form-control"
-									placeholder="Enter name" />
-							</div>
-						</div>
+				<h4>Here is the timeline for Project: ${project.getName()}</h4>
 
+				<br>
+				<div id="my-timeline" class="timeline-default dark-theme"
+					style="height: 200px; border: 1px solid #aaa; margin: 2em; font-size: 10px;"></div>
 
-						<div class="form-group">
-							<label class="control-label col-xs-2">Start Date:</label>
-							<div class="col-xs-3">
-								<sj:datepicker name="startdate"
-									displayFormat="yy-mm-dd" />
-							</div>
-
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-2">End Date:</label>
-							<div class="col-xs-3">
-								<sj:datepicker name="enddate"
-									displayFormat="yy-mm-dd" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-xs-2">Project Outcome:</label>
-							<div class="col-xs-8">
-								<s:textfield name="newproject.projectOutcome"
-									cssClass="form-control" placeholder="Enter outcome" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-2">Description:</label>
-							<div class="col-xs-8">
-								<s:textarea name="newproject.description"
-									cssClass="form-control" placeholder="Enter description"
-									rows="4" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class=" col-xs-10">
-								<s:submit value="Submit" cssClass="btn btn-primary "></s:submit>
-							</div>
-						</div>
-					</s:form>
-				</div>
 			</div>
 		</div>
 	</div>
-
 </body>
+
+
 </html>

@@ -105,8 +105,7 @@
 
 									</ul>
 								</div></li>
-							<li><a href="#"><span
-									class="glyphicon glyphicon-calendar"></span> Timeline </a></li>
+							
 							<li><a href="#"><span class="glyphicon glyphicon-cog"></span>
 									My Profile</a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
