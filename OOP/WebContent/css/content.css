@@ -5,6 +5,12 @@
     margin-right:auto;
     
   }
+  
+  .borderless > tbody > tr > td {
+    border: none;
+    padding: 8px;
+line-height: 1.42857143;
+}
 
 /* project table*/
 .project-table {

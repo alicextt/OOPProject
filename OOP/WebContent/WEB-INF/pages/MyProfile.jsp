@@ -104,7 +104,8 @@
 
 							<li><s:url id="urlValue" action="URLRedirection">
 									<s:param name="url">myprofile</s:param>
-								</s:url><s:a href="%{urlValue}"><span class="glyphicon glyphicon-cog"></span>
+								</s:url> <s:a href="%{urlValue}">
+									<span class="glyphicon glyphicon-cog"></span>
 									My Profile</s:a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
 									<s:param name="url">logout</s:param>
@@ -137,44 +138,44 @@
 						${user.getLastName()} ${user.getFirstName()}
 					</h3>
 				</div>
-				<p>Here are your task status</p>
-				<%
-					User u = (User) (session.getAttribute("user"));
-				%>
-				<table class="table table-striped" style="width: 95%">
-					<thead>
-						<tr>
-							<!--  		<th>Project Id</th>  -->
-							<th>Project Name</th>
-							<th>Task Status</th>
-							<th>Task Start Date</th>
-							<th>Task End Date</th>
-							<th>Task Description</th>
-						</tr>
-					</thead>
+				<div class="container">
 					<%
-						for (Task s : u.getTasks()) {
+						User u = (User) (session.getAttribute("user"));
 					%>
-					<tr>
-						<!--  	<td><%=s.getProjectintask().getIdProject()%></td>-->
-						<td><%=s.getProjectintask().getName()%></td>
-						<td><%=s.getStatus()%></td>
+					<h4>My Profile:</h4>
+					<hr>
+					<div class="form-horizontal">
+						<table class=" borderless" style="width: 40%">
+							<tr>
+								<td>First name:</td>
+								<td><%=u.getFirstName()%></td>
+							</tr>
 
-						<td><%=Project.dateToStr(s.getStartDate())%></td>
-						<td><%=Project.dateToStr(s.getEndDate())%></td>
-						<td><%=s.getDescription()%></td>
-						<td><s:url id="urlValue" action="EdittaskAciton"
-								encode="true">
-								<s:param name="edittask"><%=s.getIdTask()%></s:param>
-							</s:url> <s:a href="%{urlValue}" cssClass="form-control">Edit</s:a></td>
-					</tr>
-					<%
-						}
-					%>
-				</table>
+							<tr>
+								<td>Last name:</td>
+								<td><%=u.getLastName()%></td>
+							</tr>
+
+							<tr>
+								<td>Department:</td>
+								<td><%=u.getStudent().getDepartment()%></td>
+							</tr>
+							<tr>
+								<td>Academic Year:</td>
+								<td><%=u.getStudent().getAcdemicYear()%></td>
+							</tr>
+							<tr>
+								<td>Email:</td>
+								<td><%=u.getEmail()%></td>
+							</tr>
+						</table>
+					</div>
+
+
+				</div>
+
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

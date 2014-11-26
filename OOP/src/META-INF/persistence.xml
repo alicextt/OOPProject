@@ -8,6 +8,7 @@
 		<class>model.User</class>
 		<class>model.Project</class>
 		<class>model.Task</class>
+		<class>model.Student</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Frugal" />
 			<property name="javax.persistence.jdbc.user" value="root" />

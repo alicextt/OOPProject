@@ -44,6 +44,19 @@ public class User implements Serializable {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="userintask")
 	private Set<Task> tasks;
 	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="userName", insertable = false, updatable = false)
+	private Student student;
+	
+	
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
 	public Set<Task> getTasks() {
 		return tasks;
 	}
