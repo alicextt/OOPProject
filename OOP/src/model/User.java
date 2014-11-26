@@ -48,7 +48,30 @@ public class User implements Serializable {
 	@JoinColumn(name="userName", insertable = false, updatable = false)
 	private Student student;
 	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="userName", insertable = false, updatable = false)
+	private Faculty faculty;
 	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="userName", insertable = false, updatable = false)
+	private Partener partener;
+	
+	public Partener getPartener() {
+		return partener;
+	}
+
+	public void setPartener(Partener partener) {
+		this.partener = partener;
+	}
+
+	public Faculty getFaculty() {
+		return faculty;
+	}
+
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
+	}
+
 	public Student getStudent() {
 		return student;
 	}

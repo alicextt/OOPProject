@@ -51,27 +51,11 @@
 									</h4>
 							</a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
-									<s:param name="url">index</s:param>
+									<s:param name="url">pindex</s:param>
 								</s:url> <s:a href="%{urlValue}">
-									<span class="glyphicon glyphicon-home"></span>  My Tasks</s:a></li>
+									<span class="glyphicon glyphicon-home"></span>  Home</s:a></li>
 
-							<li><a href="#" data-toggle="collapse" data-target="#query"
-								data-parent="#sidenav01" class="collapsed"> <span
-									class="glyphicon glyphicon-cloud"></span> Query <span
-									class="caret pull-right"></span>
-							</a>
-								<div class="collapse" id="query" style="height: 0px;">
-									<ul class="nav nav-list">
-										<li><s:url id="urlValue" action="URLRedirection"
-												encode="true">
-												<s:param name="url">queryprojects</s:param>
-											</s:url> <s:a href="%{urlValue}">By name</s:a></li>
-										<li><s:url id="urlValue" action="URLRedirection"
-												encode="true">
-												<s:param name="url">queryprojects</s:param>
-											</s:url> <s:a href="%{urlValue}">By project</s:a></li>
-									</ul>
-								</div></li>
+
 							<li><a href="#" data-toggle="collapse"
 								data-target="#project" data-parent="#sidenav01"
 								class="collapsed"> <span class="glyphicon glyphicon-lock"></span>
@@ -82,28 +66,18 @@
 
 										<li><s:url id="urlValue" action="URLRedirection"
 												encode="true">
-												<s:param name="url">viewmyprojects</s:param>
+												<s:param name="url">pviewmyprojects</s:param>
 											</s:url> <s:a href="%{urlValue}">My Projects</s:a></li>
 										<li><s:url id="urlValue" action="URLRedirection"
 												encode="true">
-												<s:param name="url">createprojects</s:param>
+												<s:param name="url">pcreateprojects</s:param>
 											</s:url> <s:a href="%{urlValue}">Create Project</s:a></li>
 									</ul>
 								</div></li>
-							<li><a href="#" data-toggle="collapse"
-								data-target="#communication" data-parent="#sidenav01"
-								class="collapsed"><span class="glyphicon glyphicon-inbox"></span>
-									Communications <span class="caret pull-right"></span></a>
-								<div class="collapse" id="communication" style="height: 0px;">
-									<ul class="nav nav-list">
-										<li><a href="#">Communicaitons</a></li>
-										<li><a href="#">Record a communicaiton</a></li>
 
-									</ul>
-								</div></li>
 
 							<li><s:url id="urlValue" action="URLRedirection">
-									<s:param name="url">myprofile</s:param>
+									<s:param name="url">pmyprofile</s:param>
 								</s:url> <s:a href="%{urlValue}">
 									<span class="glyphicon glyphicon-cog"></span>
 									My Profile</s:a></li>
@@ -138,60 +112,29 @@
 						${user.getLastName()} ${user.getFirstName()}
 					</h3>
 				</div>
-				<div class="container">
-					<%
-						User u = (User) (session.getAttribute("user"));
-					%>
-					<h4>My Profile:</h4>
-					<hr>
-					<div class="form-horizontal">
-						<table class=" borderless" style="width: 40%">
-							<tr>
-								<td>First name:</td>
-								<td><%=u.getFirstName()%></td>
-							</tr>
-
-							<tr>
-								<td>Last name:</td>
-								<td><%=u.getLastName()%></td>
-							</tr>
-							<%
-								if (u.getStudent() != null) {
-							%>
-							<tr>
-								<td>Department:</td>
-								<td><%=u.getStudent().getDepartment()%></td>
-							</tr>
-							<tr>
-								<td>Academic Year:</td>
-								<td><%=u.getStudent().getAcdemicYear()%></td>
-							</tr>
-							<%
-								} else if (u.getFaculty() != null) {
-							%>
-							<tr>
-								<td>Department:</td>
-								<td><%=u.getFaculty().getDepartment()%></td>
-							</tr>
-							<tr>
-								<td>Title:</td>
-								<td><%=u.getFaculty().getTitle()%></td>
-							</tr>
-							<%
-								}
-							%>
-							<tr>
-								<td>Email:</td>
-								<td><%=u.getEmail()%></td>
-							</tr>
-						</table>
-					</div>
-
-
-				</div>
-
+				<h4>Thank you for being a partener for Frugal Innovation Lab!</h4>
+				<p>Frugal innovation is a process of problem solving and a
+					game changing strategy that addresses the need for products and
+					services in emerging, underdeveloped countries. Features of frugal
+					innovation include ruggedization, simplification, sparing use of
+					low cost raw materials, an emphasis on earth friendly practices,
+					and a philosophy that favors doing more with less in creating
+					compassionate, user-centric design.</p>
+					<br>
+				<p>With the vibrancy of emerging market growth, the School of
+					Engineering's Frugal Innovation Lab (FIL) meets this new paradigm
+					head-on by offering undergraduate and graduate courses, hosting
+					student and faculty research projects, and partnering with
+					field-based social entrepreneurs in emerging markets. Impactful
+					work is being done in simple yet powerful ways. Projects range from
+					designs and prototypes to implemented and utilized products and
+					services. Students learn within the lab as well as interact with
+					field-based social entrepreneurs and global partners to solve
+					real world problems.
+					</p>
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

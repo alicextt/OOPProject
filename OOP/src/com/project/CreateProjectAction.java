@@ -69,7 +69,11 @@ public class CreateProjectAction extends ActionSupport implements SessionAware {
 		newproject.setUsers(set1);
 
 		if (ps.addProject(newproject, creater))
+		{
+			if(creater.getPartener()!=null)
+				return "Partener";
 			return SUCCESS;
+		}	
 		else
 			return INPUT;
 	}

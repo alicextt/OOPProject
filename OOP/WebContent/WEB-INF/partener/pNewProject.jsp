@@ -1,8 +1,8 @@
 <%@ page import="model.*"%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -26,10 +26,9 @@
 	color: white;
 }
 </style>
+<sj:head />
 </head>
-<body>
-	<!-- ${user.getLastName()}, ${user.getFirstName()}! You are logged in! -->
-	<div class="row affix-row">
+<div class="row affix-row">
 		<div class="col-sm-3 col-md-2 affix-sidebar">
 			<div class="sidebar-nav">
 				<div class="navbar navbar-default" role="navigation">
@@ -51,27 +50,11 @@
 									</h4>
 							</a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
-									<s:param name="url">index</s:param>
+									<s:param name="url">pindex</s:param>
 								</s:url> <s:a href="%{urlValue}">
-									<span class="glyphicon glyphicon-home"></span>  My Tasks</s:a></li>
+									<span class="glyphicon glyphicon-home"></span>  Home</s:a></li>
 
-							<li><a href="#" data-toggle="collapse" data-target="#query"
-								data-parent="#sidenav01" class="collapsed"> <span
-									class="glyphicon glyphicon-cloud"></span> Query <span
-									class="caret pull-right"></span>
-							</a>
-								<div class="collapse" id="query" style="height: 0px;">
-									<ul class="nav nav-list">
-										<li><s:url id="urlValue" action="URLRedirection"
-												encode="true">
-												<s:param name="url">queryprojects</s:param>
-											</s:url> <s:a href="%{urlValue}">By name</s:a></li>
-										<li><s:url id="urlValue" action="URLRedirection"
-												encode="true">
-												<s:param name="url">queryprojects</s:param>
-											</s:url> <s:a href="%{urlValue}">By project</s:a></li>
-									</ul>
-								</div></li>
+
 							<li><a href="#" data-toggle="collapse"
 								data-target="#project" data-parent="#sidenav01"
 								class="collapsed"> <span class="glyphicon glyphicon-lock"></span>
@@ -82,28 +65,18 @@
 
 										<li><s:url id="urlValue" action="URLRedirection"
 												encode="true">
-												<s:param name="url">viewmyprojects</s:param>
+												<s:param name="url">pviewmyprojects</s:param>
 											</s:url> <s:a href="%{urlValue}">My Projects</s:a></li>
 										<li><s:url id="urlValue" action="URLRedirection"
 												encode="true">
-												<s:param name="url">createprojects</s:param>
+												<s:param name="url">pcreateprojects</s:param>
 											</s:url> <s:a href="%{urlValue}">Create Project</s:a></li>
 									</ul>
 								</div></li>
-							<li><a href="#" data-toggle="collapse"
-								data-target="#communication" data-parent="#sidenav01"
-								class="collapsed"><span class="glyphicon glyphicon-inbox"></span>
-									Communications <span class="caret pull-right"></span></a>
-								<div class="collapse" id="communication" style="height: 0px;">
-									<ul class="nav nav-list">
-										<li><a href="#">Communicaitons</a></li>
-										<li><a href="#">Record a communicaiton</a></li>
 
-									</ul>
-								</div></li>
 
 							<li><s:url id="urlValue" action="URLRedirection">
-									<s:param name="url">myprofile</s:param>
+									<s:param name="url">pmyprofile</s:param>
 								</s:url> <s:a href="%{urlValue}">
 									<span class="glyphicon glyphicon-cog"></span>
 									My Profile</s:a></li>
@@ -131,67 +104,68 @@
 						Folder</a>
 
 				</div>
-
 				<div class="page-header" style="clear: both">
 					<h3>
 						<span class="glyphicon glyphicon-th-list"></span> Hello,
 						${user.getLastName()} ${user.getFirstName()}
 					</h3>
 				</div>
+				<%
+					User u = (User) (session.getAttribute("user"));
+				%>
 				<div class="container">
-					<%
-						User u = (User) (session.getAttribute("user"));
-					%>
-					<h4>My Profile:</h4>
-					<hr>
-					<div class="form-horizontal">
-						<table class=" borderless" style="width: 40%">
-							<tr>
-								<td>First name:</td>
-								<td><%=u.getFirstName()%></td>
-							</tr>
-
-							<tr>
-								<td>Last name:</td>
-								<td><%=u.getLastName()%></td>
-							</tr>
-							<%
-								if (u.getStudent() != null) {
-							%>
-							<tr>
-								<td>Department:</td>
-								<td><%=u.getStudent().getDepartment()%></td>
-							</tr>
-							<tr>
-								<td>Academic Year:</td>
-								<td><%=u.getStudent().getAcdemicYear()%></td>
-							</tr>
-							<%
-								} else if (u.getFaculty() != null) {
-							%>
-							<tr>
-								<td>Department:</td>
-								<td><%=u.getFaculty().getDepartment()%></td>
-							</tr>
-							<tr>
-								<td>Title:</td>
-								<td><%=u.getFaculty().getTitle()%></td>
-							</tr>
-							<%
-								}
-							%>
-							<tr>
-								<td>Email:</td>
-								<td><%=u.getEmail()%></td>
-							</tr>
-						</table>
-					</div>
+					<s:form action="CreateProject" cssClass="form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-xs-2">Project Name:</label>
+							<div class="col-xs-8">
+								<s:textfield name="newproject.name" cssClass="form-control"
+									placeholder="Enter name" />
+							</div>
+						</div>
 
 
+						<div class="form-group">
+							<label class="control-label col-xs-2">Start Date:</label>
+							<div class="col-xs-3">
+								<sj:datepicker name="startdate"
+									displayFormat="yy-mm-dd" />
+							</div>
+
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">End Date:</label>
+							<div class="col-xs-3">
+								<sj:datepicker name="enddate"
+									displayFormat="yy-mm-dd" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-xs-2">Project Outcome:</label>
+							<div class="col-xs-8">
+								<s:textfield name="newproject.projectOutcome"
+									cssClass="form-control" placeholder="Enter outcome" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">Description:</label>
+							<div class="col-xs-8">
+								<s:textarea name="newproject.description"
+									cssClass="form-control" placeholder="Enter description"
+									rows="4" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class=" col-xs-10">
+								<s:submit value="Submit" cssClass="btn btn-primary "></s:submit>
+							</div>
+						</div>
+					</s:form>
 				</div>
-
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

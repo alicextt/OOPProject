@@ -38,6 +38,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	public String execute() {
 	
 		session.put("user", u);
+		if(u.getPartener()!=null){
+			return "Partener";
+		}
 		return SUCCESS;
 	}
 
