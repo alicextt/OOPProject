@@ -40,9 +40,12 @@
 		</action>
 		<action name="ProjectAction" class="com.project.ProjectAction">
 			<result name="success"> /WEB-INF/pages/ViewProject.jsp</result>
+			<result name="partner"> /WEB-INF/partener/pViewProject.jsp</result>
 		</action>
 		<action name="addMemberAction" class="com.project.AddUserToProject">
 			<result name="success">/WEB-INF/pages/ViewProject.jsp</result>
+			<result name="partener">/WEB-INF/partener/pViewProject.jsp</result>
+			
 		</action>
 
 		<action name="EdittaskAciton" class="com.project.EditTaskAction">

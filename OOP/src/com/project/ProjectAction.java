@@ -44,6 +44,10 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 //		List<String> usrlist=us.getallUser();
 //		session.put("usrlist", usrlist);
 		session.put("project", p);
+		User u=(User)(session.get("user"));
+		if(u.getPartener()!=null){
+			return "partner";
+		}
 		return SUCCESS;
 	}
 

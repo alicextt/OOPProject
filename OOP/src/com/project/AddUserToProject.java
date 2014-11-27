@@ -36,6 +36,10 @@ public class AddUserToProject extends ActionSupport implements SessionAware {
 		User u=us.readUser(chooseuser).get(0);
 		ProjectService ps=new ProjectServiceImp();
 		ps.addUsertoProject(p, u);
+		User me=(User)session.get("user");
+		if(me.getPartener()!=null){
+			return "partener";
+		}
 		
 		return SUCCESS;
 	}

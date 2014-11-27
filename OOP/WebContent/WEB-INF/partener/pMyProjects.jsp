@@ -130,16 +130,18 @@
 					%>
 
 					<tr>
-						<td><%=p.getName()%></td>
+						<td><s:url id="urlValue" action="ProjectAction"
+									encode="true">
+									<s:param name="name"><%=p.getName()%></s:param>
+								</s:url> <s:a href="%{urlValue}">
+									<span class="glyphicon glyphicon-zoom-in" ></span>
+								</s:a>    <%=p.getName()%></td>
 						<!--  	<td><%=p.getDescription()%></td>-->
 						<td><%=Project.dateToStr(p.getStartDate())%></td>
 						<td><%=Project.dateToStr(p.getEndDate())%></td>
 						<!--	<td><%=p.getProjectOutcome()%></td>-->
 						<td><%=p.getProjectStatus()%></td>
 
-					</tr>
-					<tr>
-						<td colspan="4">Description: <br><%=p.getDescription()%></td>
 					</tr>
 					<%
 						}
