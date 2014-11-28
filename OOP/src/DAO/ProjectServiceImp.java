@@ -71,9 +71,13 @@ public class ProjectServiceImp implements ProjectService {
 		 }
 
 	@Override
-	public void updateproject() {
-		// TODO Auto-generated method stub
-		
+	public void updateproject(Project p) {
+		EntityManager em=emf.createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.merge(p);
+		transaction.commit();
+		em.close();		
 	}
 
 	@Override

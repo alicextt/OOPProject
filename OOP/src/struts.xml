@@ -26,6 +26,7 @@
 		<action name="URLRedirection" class="com.login.URLRedirection">
 			<result name="viewmyprojects"> /WEB-INF/pages/MyProjects.jsp</result>
 			<result name="createprojects"> /WEB-INF/pages/NewProject.jsp</result>
+			
 			<result name="createTask">/WEB-INF/pages/NewTask.jsp</result>
 			<result name="index">/WEB-INF/pages/index.jsp</result>
 			<result name="pindex">/WEB-INF/partener/pindex.jsp</result>
@@ -54,11 +55,21 @@
 			<result name="success">/WEB-INF/pages/EditTask.jsp</result>
 			<result name="input">/WEB-INF/pages/EditTask.jsp</result>
 		</action>
+		
+		<action name="EditProjectParam" class="com.project.EditProjectParam">
+			<result name="success">/WEB-INF/pages/EditProject.jsp</result>
+			<result name="input">/WEB-INF/pages/EditProject.jsp</result>
+		</action>
 
 
 		<action name="UpdateTaskAction" class="com.project.UpdateTaskAction">
 			<result name="success">/WEB-INF/pages/index.jsp</result>
 			<result name="input">/WEB-INF/pages/index.jsp</result>
+		</action>
+		
+		<action name="UpdateProjectAction" class="com.project.UpdateProjectAction">
+			<result name="success">/WEB-INF/pages/ViewProject.jsp</result>
+			<result name="input">/WEB-INF/pages/EditProject.jsp</result>
 		</action>
 
 		<action name="queryProject" class="edu.scu.frugal.action.QueryAction">

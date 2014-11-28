@@ -10,6 +10,6 @@ public interface ProjectService {
 	boolean addProject(Project p, User u);
 	
 	void addUsertoProject(Project p, User u);
-	void updateproject();
+	void updateproject(Project p);
 	void deleteproject();
 }
