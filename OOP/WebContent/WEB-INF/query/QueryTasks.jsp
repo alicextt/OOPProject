@@ -69,11 +69,11 @@
 										<li><s:url id="urlValue" action="URLRedirection"
 												encode="true">
 												<s:param name="url">queryprojects</s:param>
-											</s:url> <s:a href="%{urlValue}">By name</s:a></li>
+											</s:url> <s:a href="%{urlValue}">Projects</s:a></li>
 										<li><s:url id="urlValue" action="URLRedirection"
 												encode="true">
-												<s:param name="url">queryprojects</s:param>
-											</s:url> <s:a href="%{urlValue}">By project</s:a></li>
+												<s:param name="url">querytasks</s:param>
+											</s:url> <s:a href="%{urlValue}">Tasks</s:a></li>
 									</ul>
 								</div></li>
 							<li ><a href="#" data-toggle="collapse"
@@ -136,28 +136,37 @@
 					<h3><span class="glyphicon glyphicon-th-list"></span> Query criteria</h3>
 				</div>
 				<div class="container">
-					<s:form action="queryProject" cssClass="form-horizontal">
+					<s:form action="queryTask" cssClass="form-horizontal">
+						<s:hidden name="task" value="true" />
 						<div class="form-group">
-							<label class="control-label col-xs-2">Project Name:</label>
-							<div class="col-xs-8">
-								<s:textfield name="params.name" cssClass="form-control"
-									placeholder="Enter name" />
+							<label class="control-label col-xs-2">Task Desc:</label>
+							<div class="col-xs-5">
+								<s:textfield name="params.desc" cssClass="form-control"
+									placeholder="(don't need full description)" />
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="control-label col-xs-2">Username:</label>
+							<div class="col-xs-5">
+								<s:textfield name="params.user" cssClass="form-control"
+									placeholder="Enter username" />
+							</div>
+						</div>						
+						<div class="form-group">
 							<label class="control-label col-xs-2">Start Date:</label>
 							<div class="col-xs-3">
-								<sj:datepicker name="params.startDate"
+								<sj:datepicker name="params.startDateStr"
 									displayFormat="yy-mm-dd" />
 							</div>
-
+							<label class="control-label col-xs-2">(YYYY-MM-DD)</label>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-2">End Date:</label>
 							<div class="col-xs-3">
-								<sj:datepicker name="params.endDate"
+								<sj:datepicker name="params.endDateStr"
 									displayFormat="yy-mm-dd" />
 							</div>
+							<label class="control-label col-xs-2">(YYYY-MM-DD)</label>
 						</div>
 
 						<div class="form-group">

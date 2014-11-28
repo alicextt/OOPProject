@@ -1,8 +1,9 @@
 <%@ page import="model.*"%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -26,28 +27,31 @@
 	color: white;
 }
 </style>
+<sj:head />
 </head>
 <body>
 	<!-- ${user.getLastName()}, ${user.getFirstName()}! You are logged in! -->
 	<div class="row affix-row">
-		<div class="col-sm-3 col-md-2 affix-sidebar">
-			<div class="sidebar-nav">
-				<div class="navbar navbar-default" role="navigation">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target=".sidebar-navbar-collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<span class="visible-xs navbar-brand">Sidebar menu</span>
-					</div>
-					<div class="navbar-collapse collapse sidebar-navbar-collapse">
+		<div id="includedMenu" class="col-sm-3 col-md-2 affix-sidebar">
+	<div class="sidebar-nav">
+		<div class="navbar navbar-default" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".sidebar-navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<span class="visible-xs navbar-brand">Sidebar menu</span>
+			</div>
+			<div class="navbar-collapse collapse sidebar-navbar-collapse">
 						<ul class="nav navbar-nav" id="sidenav01">
-							<li class="active"><a class="collapsed">
+							<li class="active"><a 
+								class="collapsed">
 									<h4>
 										Homepage <br> <small>${user.getLastName()},
-											${user.getFirstName()} </small>
+											${user.getFirstName()} 
+										</small>
 									</h4>
 							</a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
@@ -72,7 +76,7 @@
 											</s:url> <s:a href="%{urlValue}">Tasks</s:a></li>
 									</ul>
 								</div></li>
-							<li><a href="#" data-toggle="collapse"
+							<li ><a href="#" data-toggle="collapse"
 								data-target="#project" data-parent="#sidenav01"
 								class="collapsed"> <span class="glyphicon glyphicon-lock"></span>
 									Project <span class="caret pull-right"></span>
@@ -102,10 +106,8 @@
 									</ul>
 								</div></li>
 
-							<li><s:url id="urlValue" action="URLRedirection">
-									<s:param name="url">myprofile</s:param>
-								</s:url><s:a href="%{urlValue}"><span class="glyphicon glyphicon-cog"></span>
-									My Profile</s:a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-cog"></span>
+									My Profile</a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
 									<s:param name="url">logout</s:param>
 								</s:url> <s:a href="%{urlValue}">
@@ -114,9 +116,9 @@
 							</s:a></li>
 						</ul>
 					</div>
-					<!--/.nav-collapse -->
-				</div>
-			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>		
 		</div>
 		<div class="col-sm-9 col-md-10 affix-content">
 			<div class="container">
@@ -130,48 +132,42 @@
 						Folder</a>
 
 				</div>
-
 				<div class="page-header" style="clear: both">
-					<h3>
-						<span class="glyphicon glyphicon-th-list"></span> Hello,
-						${user.getLastName()} ${user.getFirstName()}
-					</h3>
+					<h3><span class="glyphicon glyphicon-th-list"></span> Query criteria</h3>
 				</div>
-				<p>Here are your task status</p>
-				<%
-					User u = (User) (session.getAttribute("user"));
-				%>
-				<table class="table table-striped" style="width: 95%">
-					<thead>
-						<tr>
-							<!--  		<th>Project Id</th>  -->
-							<th>Project Name</th>
-							<th>Task Status</th>
-							<th>Task Start Date</th>
-							<th>Task End Date</th>
-							<th>Task Description</th>
-						</tr>
-					</thead>
-					<%
-						for (Task s : u.getTasks()) {
-					%>
-					<tr>
-						<!--  	<td><%=s.getProjectintask().getIdProject()%></td>-->
-						<td><%=s.getProjectintask().getName()%></td>
-						<td><%=s.getStatus()%></td>
+				<div class="container">
+					<s:form action="queryProject" cssClass="form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-xs-2">Project Name:</label>
+							<div class="col-xs-5">
+								<s:textfield name="params.name" cssClass="form-control"
+									placeholder="(don't need full name)" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">Start Date:</label>
+							<div class="col-xs-3">
+								<sj:datepicker name="params.startDateStr"
+									displayFormat="yy-mm-dd" />
+							</div>
+							<label class="control-label col-xs-2">(YYYY-MM-DD)</label>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-xs-2">End Date:</label>
+							<div class="col-xs-3">
+								<sj:datepicker name="params.endDateStr"
+									displayFormat="yy-mm-dd" />
+							</div>
+							<label class="control-label col-xs-2">(YYYY-MM-DD)</label>
+						</div>
 
-						<td><%=Project.dateToStr(s.getStartDate())%></td>
-						<td><%=Project.dateToStr(s.getEndDate())%></td>
-						<td><%=s.getDescription()%></td>
-						<td><s:url id="urlValue" action="EdittaskAciton"
-								encode="true">
-								<s:param name="edittask"><%=s.getIdTask()%></s:param>
-							</s:url> <s:a href="%{urlValue}" cssClass="form-control">Edit</s:a></td>
-					</tr>
-					<%
-						}
-					%>
-				</table>
+						<div class="form-group">
+							<div class=" col-xs-10">
+								<s:submit value="Query" cssClass="btn btn-primary "></s:submit>
+							</div>
+						</div>
+					</s:form>
+				</div>
 			</div>
 		</div>
 	</div>

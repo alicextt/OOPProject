@@ -1,39 +1,47 @@
 package model;
 
 import java.io.Serializable;
-
-import javax.persistence.*;
-
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the Task database table.
  * 
  */
-@Entity(name="Task")
-@NamedQueries({ 
-	@NamedQuery(name = "Task.getMaxID", query = "Select max(t.idTask) as maxid from Task t"),
-@NamedQuery(name="Task.findAll", query="SELECT t FROM Task t")})
+@Entity(name = "Task")
+@NamedQueries({ @NamedQuery(name = "Task.getMaxID", query = "Select max(t.idTask) as maxid from Task t"),
+		@NamedQuery(name = "Task.findAll", query = "SELECT t FROM Task t") })
 public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="IdTask")
+	@Column(name = "IdTask")
 	@Id
 	private int idTask;
 
 	@Lob
-	@Column(name="Description")
+	@Column(name = "Description")
 	private String description;
 
-	@Column(name="EndDate")
+	@Column(name = "EndDate")
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
-	
-	@Column(name="IdProject")
+
+	@Column(name = "IdProject")
 	private int idProject;
 
-	@Column(name="StartDate")
+	@Column(name = "StartDate")
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 
@@ -45,22 +53,26 @@ public class Task implements Serializable {
 		this.projectintask = projectintask;
 	}
 
-	@Column(name="Status")
+	@Column(name = "Status")
 	private String status;
 
-	@Column(name="UserName")
+	@Column(name = "UserName")
 	private String userName;
-	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@PrimaryKeyJoinColumn(name="UserName")
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn(name = "UserName")
 	private User userintask;
-	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@PrimaryKeyJoinColumn(name="IdProject")
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn(name = "IdProject")
 	private Project projectintask;
 
 	public User getUserintask() {
 		return userintask;
+	}
+
+	public String getUserFullname() {
+		return this.userintask.getFirstName() + "," + this.userintask.getLastName();
 	}
 
 	public void setUserintask(User userintask) {
@@ -90,6 +102,12 @@ public class Task implements Serializable {
 		return this.endDate;
 	}
 
+	public String getEndDateStr() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String dateString = formatter.format(this.endDate);
+		return dateString;
+	}
+
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
@@ -104,6 +122,12 @@ public class Task implements Serializable {
 
 	public Date getStartDate() {
 		return this.startDate;
+	}
+
+	public String getStartDateStr() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String dateString = formatter.format(this.startDate);
+		return dateString;
 	}
 
 	public void setStartDate(Date startDate) {
@@ -127,14 +151,14 @@ public class Task implements Serializable {
 	}
 
 	public String toString() {
-		
-		return "Task[idTask:"+getIdTask()+" username:" + getUserName() + " Description:"
-				+ getDescription() + " status:" + getStatus()+" Idproject:"+getIdProject()+" ]";
+
+		return "Task[idTask:" + getIdTask() + " username:" + getUserName() + " Description:" + getDescription()
+				+ " status:" + getStatus() + " Idproject:" + getIdProject() + " ]";
 	}
 
 	@Override
 	public int hashCode() {
-		
+
 		return (new Integer(idTask)).hashCode();
 	}
 
@@ -148,5 +172,4 @@ public class Task implements Serializable {
 
 	}
 
-	
 }

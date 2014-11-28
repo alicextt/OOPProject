@@ -34,9 +34,11 @@
 			<result name="pmyprofile">/WEB-INF/partener/pMyProfile.jsp</result>
 
 			<result name="timeline">/WEB-INF/pages/Timeline.jsp</result>
-			<result name="queryprojects">/WEB-INF/pages/QueryProjects.jsp</result>
 			<result name="logout">login.jsp</result>
 			<result name="myprofile">/WEB-INF/pages/MyProfile.jsp</result>
+			
+			<result name="queryprojects">/WEB-INF/query/QueryProjects.jsp</result>
+			<result name="querytasks">/WEB-INF/query/QueryTasks.jsp</result>
 		</action>
 		<action name="ProjectAction" class="com.project.ProjectAction">
 			<result name="success"> /WEB-INF/pages/ViewProject.jsp</result>
@@ -60,9 +62,11 @@
 		</action>
 
 		<action name="queryProject" class="edu.scu.frugal.action.QueryAction">
-			<result name="success">/WEB-INF/pages/MyProjects.jsp</result>
-			<result name="input">/WEB-INF/pages/QueryProjects.jsp</result>
+			<result name="success">/WEB-INF/query/listProjects.jsp</result>
 		</action>
+		<action name="queryTask" class="edu.scu.frugal.action.QueryAction">
+			<result name="success">/WEB-INF/query/listTasks.jsp</result>
+		</action>		
 	</package>
 
 	<package name="select" extends="json-default">

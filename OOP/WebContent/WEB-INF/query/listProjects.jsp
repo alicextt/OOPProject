@@ -1,4 +1,6 @@
 <%@ page import="model.*"%>
+<%@ page import="java.text.DateFormat"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -26,6 +28,7 @@
 	color: white;
 }
 </style>
+
 </head>
 <body>
 	<!-- ${user.getLastName()}, ${user.getFirstName()}! You are logged in! -->
@@ -44,10 +47,13 @@
 					</div>
 					<div class="navbar-collapse collapse sidebar-navbar-collapse">
 						<ul class="nav navbar-nav" id="sidenav01">
-							<li class="active"><a class="collapsed">
+							<li class="active"><a 
+								class="collapsed">
 									<h4>
-										Homepage <br> <small>${user.getLastName()},
-											${user.getFirstName()} </small>
+										Homepage
+										<br><small>
+										     <s:property value="userLastName" />, <s:property value="userFirstName" />
+										</small>
 									</h4>
 							</a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
@@ -72,7 +78,7 @@
 											</s:url> <s:a href="%{urlValue}">Tasks</s:a></li>
 									</ul>
 								</div></li>
-							<li><a href="#" data-toggle="collapse"
+							<li ><a href="#" data-toggle="collapse"
 								data-target="#project" data-parent="#sidenav01"
 								class="collapsed"> <span class="glyphicon glyphicon-lock"></span>
 									Project <span class="caret pull-right"></span>
@@ -102,10 +108,8 @@
 									</ul>
 								</div></li>
 
-							<li><s:url id="urlValue" action="URLRedirection">
-									<s:param name="url">myprofile</s:param>
-								</s:url><s:a href="%{urlValue}"><span class="glyphicon glyphicon-cog"></span>
-									My Profile</s:a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-cog"></span>
+									My Profile</a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
 									<s:param name="url">logout</s:param>
 								</s:url> <s:a href="%{urlValue}">
@@ -130,51 +134,45 @@
 						Folder</a>
 
 				</div>
-
 				<div class="page-header" style="clear: both">
 					<h3>
-						<span class="glyphicon glyphicon-th-list"></span> Hello,
-						${user.getLastName()} ${user.getFirstName()}
+						<span class="glyphicon glyphicon-th-list"></span> Search result
 					</h3>
 				</div>
-				<p>Here are your task status</p>
-				<%
-					User u = (User) (session.getAttribute("user"));
-				%>
-				<table class="table table-striped" style="width: 95%">
-					<thead>
-						<tr>
-							<!--  		<th>Project Id</th>  -->
-							<th>Project Name</th>
-							<th>Task Status</th>
-							<th>Task Start Date</th>
-							<th>Task End Date</th>
-							<th>Task Description</th>
-						</tr>
-					</thead>
-					<%
-						for (Task s : u.getTasks()) {
-					%>
-					<tr>
-						<!--  	<td><%=s.getProjectintask().getIdProject()%></td>-->
-						<td><%=s.getProjectintask().getName()%></td>
-						<td><%=s.getStatus()%></td>
 
-						<td><%=Project.dateToStr(s.getStartDate())%></td>
-						<td><%=Project.dateToStr(s.getEndDate())%></td>
-						<td><%=s.getDescription()%></td>
-						<td><s:url id="urlValue" action="EdittaskAciton"
-								encode="true">
-								<s:param name="edittask"><%=s.getIdTask()%></s:param>
-							</s:url> <s:a href="%{urlValue}" cssClass="form-control">Edit</s:a></td>
-					</tr>
-					<%
-						}
-					%>
-				</table>
+				<div class="project-table">
+					<table class="table table-striped" >
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Start Date</th>
+								<th>End Date</th>
+							<!--  <th>Project Outcome</th>-->	
+								<th>Project Status</th>
+							</tr>
+						</thead>
+						<s:iterator value="projects">
+						  <tr>
+							<td>
+							  <s:url id="url" action="ProjectAction" encode="true">
+							    <s:param name="name"><s:property value="name" /></s:param>
+							  </s:url>
+							  <s:a href="%{url}">
+							    <span class="glyphicon glyphicon-zoom-in" ></span>
+							  </s:a>
+							  <s:property value="name" /></td>
+							<td><s:property value="startDateStr" /></td>
+							<td><s:property value="endDateStr" /></td>
+							<td><s:property value="projectStatus" /></td>
+						  </tr>	
+						</s:iterator>
+					</table>
+				</div>
+
 			</div>
 		</div>
 	</div>
+
 
 </body>
 </html>

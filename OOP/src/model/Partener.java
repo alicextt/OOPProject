@@ -2,10 +2,15 @@ package model;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name="Partener")
-@Table(name="Partener")
+@Entity(name = "Partener")
+@Table(name = "Partener")
 public class Partener implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -14,10 +19,10 @@ public class Partener implements Serializable {
 
 	@Column(name = "CompanyAddress")
 	private String address;
-	
+
 	@Column(name = "Representative")
 	private String rep;
-	
+
 	public String getRep() {
 		return rep;
 	}
@@ -28,10 +33,8 @@ public class Partener implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	@Column(name = "Partener")
+	@Column(name = "UserName")
 	private String userName;
-
-	
 
 	public String getCompany() {
 		return company;
@@ -56,9 +59,5 @@ public class Partener implements Serializable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
-	
-
-	
 
 }
