@@ -28,6 +28,15 @@ public class UpdateProjectAction extends ActionSupport implements SessionAware {
 	private String edate;
 	private String poutcome;
 	private String pstatus;
+	private String pname;
+
+	public String getPname() {
+		return pname;
+	}
+
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
 
 	SessionMap<String, Object> session;
 
@@ -84,14 +93,14 @@ public class UpdateProjectAction extends ActionSupport implements SessionAware {
 		}
 		Date endd = new SimpleDateFormat("yyyy-MM-dd").parse(edate);
 
+		p.setName(pname);
 		p.setStartDate(startd);
 		p.setEndDate(endd);
-
+		p.setProjectOutcome(poutcome);
 		p.setProjectStatus(pstatus);
 
 		ProjectService ps = new ProjectServiceImp();
 		ps.updateproject(p);
-		
 
 		UserService us = new UserServiceImp();
 		User me = (User) (session.get("user"));
@@ -106,5 +115,4 @@ public class UpdateProjectAction extends ActionSupport implements SessionAware {
 
 	}
 
-	
 }

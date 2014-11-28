@@ -146,6 +146,13 @@
 					<s:form action="UpdateProjectAction" cssClass="form-horizontal">
 
 						<div class="form-group">
+							<label class="control-label col-xs-2">Project Name:</label>
+							<div class="col-xs-2">
+								<s:textfield name="pname" cssClass="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group">
 							<label class="control-label col-xs-2">Project Status:</label>
 							<div class="col-xs-2">
 								<s:textfield name="pstatus" cssClass="form-control" />
@@ -159,7 +166,7 @@
 
 						</div>
 						<div class="form-group">
-							<label class="control-label col-xs-2">Start Date:</label>
+							<label class="control-label col-xs-2">End Date:</label>
 							<div class="col-xs-3">
 								<sj:datepicker name="edate" displayFormat="yy-mm-dd" />
 							</div>

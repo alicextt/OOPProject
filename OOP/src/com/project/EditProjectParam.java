@@ -12,6 +12,15 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class EditProjectParam extends ActionSupport{
 	
+	private String pname;
+	public String getPname() {
+		return pname;
+	}
+
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+
 	private String descrip;
 	private Date sdate;
 	private Date edate;
@@ -22,6 +31,7 @@ public class EditProjectParam extends ActionSupport{
 		
 		Map<String, Object> sess=ActionContext.getContext().getSession();
 		Project editproject=(Project) sess.get("project");
+		pname=editproject.getName();
 		descrip=editproject.getDescription();
 		sdate=editproject.getStartDate();
 		edate=editproject.getEndDate();
