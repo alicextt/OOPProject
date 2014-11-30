@@ -35,10 +35,10 @@ public class CreateTaskAction extends ActionSupport implements SessionAware{
 		try {
 			startd=start.parse(startdate);
 			endd=start.parse(enddate);
+			assert(startd!=null&&endd!=null);
 			newtask.setStartDate(startd);
 			newtask.setEndDate(endd);	
 		} catch (ParseException e) {
-			e.printStackTrace();
 		}
 		
 	}
@@ -63,6 +63,16 @@ public class CreateTaskAction extends ActionSupport implements SessionAware{
 		User me=(User)(session.get("user"));
 		session.put("user", us.readUser(me.getUserName()).get(0));
 		return SUCCESS;
+	}
+	
+	public void validate() {
+		
+		if(startdate.isEmpty())
+			addFieldError("startdate", "Start date can not be null!"); 
+		if(enddate.isEmpty())
+			addFieldError("enddate", "End date can not be null!"); 
+		
+		
 	}
 
 	public String getStartdate() {

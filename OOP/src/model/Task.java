@@ -60,11 +60,11 @@ public class Task implements Serializable {
 	@Column(name = "UserName")
 	private String userName;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	@PrimaryKeyJoinColumn(name = "UserName")
 	private User userintask;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	@PrimaryKeyJoinColumn(name = "IdProject")
 	private Project projectintask;
 
@@ -165,7 +165,7 @@ public class Task implements Serializable {
 
 	@Override
 	public boolean equals(Object object) {
-		if (!(object instanceof Task)) {
+		if (object instanceof Task) {
 			if (idTask == ((Task) object).idTask)
 				return true;
 		}

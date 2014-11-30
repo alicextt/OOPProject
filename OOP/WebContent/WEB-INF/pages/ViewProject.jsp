@@ -207,6 +207,7 @@
 							<table class="table table-striped">
 								<thead>
 									<tr>
+									<th></th>
 										<th>Assigned To</th>
 										<th>Description</th>
 										<th>Start date</th>
@@ -218,6 +219,14 @@
 									for (Task t : p.getTasks()) {
 								%>
 								<tr>
+								<td>
+								<s:url id="urlValue" action="ProjectAction"
+									encode="true">
+									<s:param name="remove">true</s:param>
+									<s:param name="taskid"><%=t.getIdTask() %></s:param>
+								</s:url> <s:a href="%{urlValue}">
+									<span class="glyphicon glyphicon-remove" ></span>
+								</s:a></td>
 									<td><%=t.getUserintask().getFirstName()%>, <%=t.getUserintask().getLastName()%></td>
 									<td><%=t.getDescription()%></td>
 									<td><%=Project.dateToStr(t.getStartDate())%></td>
@@ -260,6 +269,7 @@
 							<table class="table table-striped">
 								<thead>
 									<tr>
+									
 										<th>User name</th>
 										<th>First name</th>
 										<th>Last name</th>
@@ -270,6 +280,7 @@
 									for (User u : p.getUsers()) {
 								%>
 								<tr>
+								
 									<td><%=u.getUserName()%></td>
 									<td><%=u.getFirstName()%></td>
 									<td><%=u.getLastName()%></td>

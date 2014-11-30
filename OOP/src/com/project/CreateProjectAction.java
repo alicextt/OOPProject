@@ -68,13 +68,11 @@ public class CreateProjectAction extends ActionSupport implements SessionAware {
 		set1.add(creater);
 		newproject.setUsers(set1);
 
-		if (ps.addProject(newproject, creater))
-		{
-			if(creater.getPartener()!=null)
+		if (ps.addProject(newproject, creater)) {
+			if (creater.getPartener() != null)
 				return "Partener";
 			return SUCCESS;
-		}	
-		else
+		} else
 			return INPUT;
 	}
 
@@ -84,6 +82,15 @@ public class CreateProjectAction extends ActionSupport implements SessionAware {
 
 	public void setNewproject(Project newproject) {
 		this.newproject = newproject;
+	}
+
+	public void validate() {
+
+		if (startdate.isEmpty())
+			addFieldError("startdate", "Start date can not be null!");
+		if (enddate.isEmpty())
+			addFieldError("enddate", "End date can not be null!");
+
 	}
 
 	@Override

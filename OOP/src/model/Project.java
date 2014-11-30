@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -70,7 +71,7 @@ public class Project implements Serializable {
 	@Column(name = "StartDate")
 	private Date startDate;
 
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "projects")
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "projects", fetch = FetchType.LAZY)
 	private Set<User> users;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "projectintask")

@@ -27,6 +27,7 @@
 	color: white;
 }
 </style>
+<s:head/>
 <sj:head />
 </head>
 <body>

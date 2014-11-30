@@ -37,7 +37,7 @@ public class User implements Serializable {
 	@Column(name = "UserName")
 	private String userName;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "Team", joinColumns = @JoinColumn(name = "UserName"), inverseJoinColumns = @JoinColumn(name = "IdProject"))
 	private Set<Project> projects;
 

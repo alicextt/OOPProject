@@ -12,4 +12,6 @@ public interface ProjectService {
 	void addUsertoProject(Project p, User u);
 	void updateproject(Project p);
 	void deleteproject();
+	void deleteUser(Project p, User u);
+	void deleteTask(Project p, Task t);
 }
