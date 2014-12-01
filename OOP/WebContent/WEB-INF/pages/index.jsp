@@ -100,7 +100,11 @@
 												encode="true">
 												<s:param name="url">mycommunication</s:param>
 											</s:url> <s:a href="%{urlValue}">Communications</s:a></li>
-										<li><a href="#">Record a communicaiton</a></li>
+										<li><s:url id="urlValue" action="URLRedirection"
+												encode="true">
+												<s:param name="url">newcomm</s:param>
+											</s:url> <s:a href="%{urlValue}">Record a communicaiton</s:a>
+										</li>
 
 									</ul>
 								</div></li>

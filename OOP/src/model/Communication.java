@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
@@ -14,7 +15,8 @@ import java.util.Set;
  */
 @Entity(name = "Communication")
 @Table(name="Communication")
-@NamedQuery(name="Communication.findAll", query="SELECT c FROM Communication c")
+@NamedQueries({ @NamedQuery(name = "Communication.getMaxID", query = "Select max(c.idCommunication) as maxid from Communication c"),
+	@NamedQuery(name="Communication.findAll", query="SELECT c FROM Communication c")})
 public class Communication implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -34,14 +36,7 @@ public class Communication implements Serializable {
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "communications", fetch = FetchType.LAZY)
 	private Set<User> users;
 
-	public String printUser(){
-		String user="";
-		Set<User> set1=getUsers();
-		for(User u: set1){
-			user+=u.getFirstName()+", "+ u.getLastName()+"  ";
-		}
-		return user;
-	}
+	
 	
 	public Set<User> getUsers() {
 		return users;
@@ -66,6 +61,12 @@ public class Communication implements Serializable {
 		return this.date;
 	}
 
+	public String getDatestr(){
+		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
+		String datestring=formatter.format(this.date);
+		return datestring;
+		
+	}
 	public void setDate(Date date) {
 		this.date = date;
 	}

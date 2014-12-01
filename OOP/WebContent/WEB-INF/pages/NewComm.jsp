@@ -1,3 +1,4 @@
+<%@ page import="model.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
@@ -140,34 +141,44 @@
 
 				</div>
 				<div class="page-header" style="clear: both">
-					<h3><span class="glyphicon glyphicon-th-list"></span>
-					Edit Budget for Project <b><s:property value="projectName" /><b></h3>
+					<h3>
+						<span class="glyphicon glyphicon-th-list"></span> Hello,
+						${user.getLastName()} ${user.getFirstName()}
+					</h3>
 				</div>
+				<%
+					User u = (User) (session.getAttribute("user"));
+				%>
 				<div class="container">
-					<s:form action="addOrEditBudget" cssClass="form-horizontal">
+					<s:form action="CreateComm" cssClass="form-horizontal">
 						<div class="form-group">
-							<label class="control-label col-xs-2">Description:</label>
-							<div class="col-xs-7">
-								<s:textfield name="budget.description" cssClass="form-control" placeholder="Enter here" />
+							<label class="control-label col-xs-2">Users:</label>
+							<div class="col-xs-8">
+								<s:textfield name="users" cssClass="form-control"
+									placeholder="Enter username, seperate by comma" />
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-2">Projected Amount:</label>
-							<div class="col-xs-3">
-							<s:textfield name="budget.projectedAmountStr" cssClass="form-control" placeholder="0" />
-							</div>
-							<label class="control-label col-xs-2">(Round to Integer)</label>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-xs-2">Actual Amount:</label>
-							<div class="col-xs-3">
-							<s:textfield name="budget.actualAmountStr" cssClass="form-control" placeholder="0" />
-							</div>
-							<label class="control-label col-xs-2">(Round to Integer)</label>
 						</div>
 
 						<div class="form-group">
-							<div class=" col-xs-9">
+							<label class="control-label col-xs-2">Date:</label>
+							<div class="col-xs-3">
+								<sj:datepicker name="commdate"
+									displayFormat="yy-mm-dd" />
+							</div>
+
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-xs-2">Summary:</label>
+							<div class="col-xs-8">
+								<s:textarea name="commsummary"
+									cssClass="form-control" placeholder="Enter outcome" rows="4"/>
+							</div>
+						</div>
+						
+
+						<div class="form-group">
+							<div class=" col-xs-10">
 								<s:submit value="Submit" cssClass="btn btn-primary "></s:submit>
 							</div>
 						</div>

@@ -23,6 +23,12 @@
 			<result name="success"> /WEB-INF/pages/ViewProject.jsp</result>
 			<result name="input">/WEB-INF/pages/NewTask.jsp</result>
 		</action>
+		
+		<action name="CreateComm" class="com.project.CreateCommAction">
+			<result name="success"> /WEB-INF/pages/MyCommunication.jsp</result>
+			<result name="input">/WEB-INF/pages/NewComm.jsp</result>
+		</action>
+		
 		<action name="URLRedirection" class="com.login.URLRedirection">
 			<result name="viewmyprojects"> /WEB-INF/pages/MyProjects.jsp</result>
 			<result name="createprojects"> /WEB-INF/pages/NewProject.jsp</result>
@@ -35,6 +41,8 @@
 			<result name="pmyprofile">/WEB-INF/partener/pMyProfile.jsp</result>
 			
 			<result name="mycommunication">/WEB-INF/pages/MyCommunication.jsp</result>
+			<result name="newcomm">/WEB-INF/pages/NewComm.jsp</result>
+			
 			
 
 			<result name="timeline">/WEB-INF/pages/Timeline.jsp</result>

@@ -74,11 +74,11 @@
 										<li><s:url id="urlValue" action="URLRedirection"
 												encode="true">
 												<s:param name="url">queryprojects</s:param>
-											</s:url> <s:a href="%{urlValue}">By name</s:a></li>
+											</s:url> <s:a href="%{urlValue}">Projects</s:a></li>
 										<li><s:url id="urlValue" action="URLRedirection"
 												encode="true">
-												<s:param name="url">queryprojects</s:param>
-											</s:url> <s:a href="%{urlValue}">By project</s:a></li>
+												<s:param name="url">querytasks</s:param>
+											</s:url> <s:a href="%{urlValue}">Tasks</s:a></li>
 									</ul>
 								</div></li>
 							<li><a href="#" data-toggle="collapse"
@@ -105,14 +105,23 @@
 									Communications <span class="caret pull-right"></span></a>
 								<div class="collapse" id="communication" style="height: 0px;">
 									<ul class="nav nav-list">
-										<li><a href="#">Communicaitons</a></li>
-										<li><a href="#">Record a communicaiton</a></li>
+										<li><s:url id="urlValue" action="URLRedirection"
+												encode="true">
+												<s:param name="url">mycommunication</s:param>
+											</s:url> <s:a href="%{urlValue}">Communications</s:a></li>
+										<li><s:url id="urlValue" action="URLRedirection"
+												encode="true">
+												<s:param name="url">newcomm</s:param>
+											</s:url> <s:a href="%{urlValue}">Record a communicaiton</s:a>
+										</li>
 
 									</ul>
 								</div></li>
 
-							<li><a href="#"><span class="glyphicon glyphicon-cog"></span>
-									My Profile</a></li>
+							<li><s:url id="urlValue" action="URLRedirection">
+									<s:param name="url">myprofile</s:param>
+								</s:url><s:a href="%{urlValue}"><span class="glyphicon glyphicon-cog"></span>
+									My Profile</s:a></li>
 							<li><s:url id="urlValue" action="URLRedirection">
 									<s:param name="url">logout</s:param>
 								</s:url> <s:a href="%{urlValue}">
