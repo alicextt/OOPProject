@@ -183,7 +183,7 @@ public class Project implements Serializable {
 
 	@Override
 	public boolean equals(Object object) {
-		if (!(object instanceof Project)) {
+		if (object instanceof Project) {
 			if (idProject == ((Project) object).idProject)
 				return true;
 		}

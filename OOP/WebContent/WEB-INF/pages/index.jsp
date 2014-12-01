@@ -96,7 +96,10 @@
 									Communications <span class="caret pull-right"></span></a>
 								<div class="collapse" id="communication" style="height: 0px;">
 									<ul class="nav nav-list">
-										<li><a href="#">Communicaitons</a></li>
+										<li><s:url id="urlValue" action="URLRedirection"
+												encode="true">
+												<s:param name="url">mycommunication</s:param>
+											</s:url> <s:a href="%{urlValue}">Communications</s:a></li>
 										<li><a href="#">Record a communicaiton</a></li>
 
 									</ul>

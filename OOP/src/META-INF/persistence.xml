@@ -11,6 +11,7 @@
 		<class>model.Student</class>
 		<class>model.Faculty</class>
 		<class>model.Partener</class>
+		<class>model.Communication</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Frugal" />
 			<property name="javax.persistence.jdbc.user" value="root" />

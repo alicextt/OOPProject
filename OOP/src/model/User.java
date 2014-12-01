@@ -40,6 +40,18 @@ public class User implements Serializable {
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "Team", joinColumns = @JoinColumn(name = "UserName"), inverseJoinColumns = @JoinColumn(name = "IdProject"))
 	private Set<Project> projects;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "communicationjoinuser", joinColumns = @JoinColumn(name = "UserName"), inverseJoinColumns = @JoinColumn(name = "IdCommunication"))
+	private Set<Communication> communications;
+
+	public Set<Communication> getCommunications() {
+		return communications;
+	}
+
+	public void setCommunications(Set<Communication> communications) {
+		this.communications = communications;
+	}
 
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="userintask")
 	private Set<Task> tasks;
