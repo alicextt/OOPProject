@@ -33,6 +33,9 @@
 			<result name="pviewmyprojects">/WEB-INF/partener/pMyProjects.jsp</result>
 			<result name="pcreateprojects">/WEB-INF/partener/pNewProject.jsp</result>
 			<result name="pmyprofile">/WEB-INF/partener/pMyProfile.jsp</result>
+			
+			<result name="mycommunication">/WEB-INF/pages/MyCommunication.jsp</result>
+			
 
 			<result name="timeline">/WEB-INF/pages/Timeline.jsp</result>
 			<result name="logout">login.jsp</result>

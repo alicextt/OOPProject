@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ page import="model.*"%>
+<%@ page import="java.text.DateFormat"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 
 <!DOCTYPE html>
@@ -25,102 +28,9 @@
 	color: white;
 }
 </style>
-<%
-	Project p=(Project)(session.getAttribute("project"));
-%>
-
-<script type="text/javascript">
-var timeline_data = {  // save as a global variable
-		'dateTimeFormat': 'Gregorian',
-		'wikiURL': "http://simile.mit.edu/shelf/",
-		'wikiSection': "Simile Cubism Timeline",
-
-		'events': [
-		         
-				<%for (Task t: p.getTasks()){%>
-				
-				{
-					'start' : "<%=t.getStartDate()%>",
-					
-					'title' : "<%=t.getDescription()%>",
-					'description':"<%="Assigned to User: "+t.getUserName()%>",
-					<%if(t.getStartDateStr().equals(t.getEndDateStr())){
-					%>
-					'durationEvent' : false
-					<%}else{
-					%>
-					'end' : "<%=t.getEndDate()%>",
-					'durationEvent' : true
-				<%}%>
-				},
-				
-				<%}%>
-				  {
-		              'start':"<%=p.getStartDate()%>",
-		              'end':"<%=p.getEndDate()%>",
-					'title' : "<%=p.getName()%>",
-					'description':"timeline of this project",
-					'durationEvent' : true
-				// Notes: not "false". And no trailing
-				// comma.
-				}
-				]
-	}
-</script>
-
-<script>
-	var tl;
-	function onLoad() {
-		var eventSource = new Timeline.DefaultEventSource();
-		
-		var theme1 = Timeline.ClassicTheme.create();
-		theme1.autoWidth = true; // Set the Timeline's "width" automatically.
-		// Set autoWidth on the Timeline's first band's theme,
-		// will affect all bands.
-		theme1.timeline_start = new Date(Date.UTC(1890, 0, 1));
-		theme1.timeline_stop = new Date(Date.UTC(2160, 0, 1));
-
-		var bandInfos = [ Timeline.createBandInfo({
-			eventSource : eventSource,
-			date : "<%=p.getStartDate()%>",
-			width : "70%",
-			intervalUnit : Timeline.DateTime.MONTH,
-			intervalPixels : 100,
-			theme : theme1,
-			layout : 'original' // original, overview, detailed
-
-		}), Timeline.createBandInfo({
-			date : "<%=p.getStartDate()%>",
-			width : "30%",
-			intervalUnit : Timeline.DateTime.YEAR,
-			intervalPixels : 200
-		}) ];
-
-		bandInfos[1].syncWith = 0;
-		bandInfos[1].highlight = true;
-
-		tl = Timeline.create(document.getElementById("my-timeline"), bandInfos);
-
-		var url = '.'; // The base url for image, icon and background image references in the data
-		eventSource.loadJSON(timeline_data, url); // The data was stored into the timeline_data variable.
-	}
-
-	var resizeTimerID = null;
-	function onResize() {
-		if (resizeTimerID == null) {
-			resizeTimerID = window.setTimeout(function() {
-				resizeTimerID = null;
-				tl.layout();
-			}, 500);
-		}
-	}
-</script>
-
-<script src="http://simile.mit.edu/timeline/api/timeline-api.js"
-	type="text/javascript"></script>
 
 </head>
-<body onload="onLoad();" onresize="onResize();">
+<body>
 	<!-- ${user.getLastName()}, ${user.getFirstName()}! You are logged in! -->
 	<div class="row affix-row">
 		<div class="col-sm-3 col-md-2 affix-sidebar">
@@ -223,23 +133,43 @@ var timeline_data = {  // save as a global variable
 						Folder</a>
 
 				</div>
-
 				<div class="page-header" style="clear: both">
 					<h3>
-						<span class="glyphicon glyphicon-th-list"></span> Hello,
-						${user.getLastName()} ${user.getFirstName()}
+						<span class="glyphicon glyphicon-th-list"></span> Communication Participated
 					</h3>
 				</div>
-				<h4>Here is the timeline for Project: ${project.getName()}</h4>
 
-				<br>
-				<div id="my-timeline" class="timeline-default dark-theme"
-					style="height: 200px; border: 1px solid #aaa; margin: 2em; font-size: 10px;"></div>
+				<div class="project-table">
+					<table class="table table-striped" >
+						<thead>
+							<tr>
+								<th>People in the communication</th>
+								<th>Summary</th>
+							</tr>
+						</thead>
+						<%
+							User u = (User) (session.getAttribute("user"));
+							for (Communication c : u.getCommunications()) {
+						%>
+
+						<tr>
+							<td><%=c.printUser() %></td>
+							<td><%=c.getSummary() %></td>
+						</tr>
+
+						<%
+							}
+						%>
+
+					</table>
+				</div>
+
+
 
 			</div>
 		</div>
 	</div>
+
+
 </body>
-
-
 </html>
