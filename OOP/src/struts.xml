@@ -40,6 +40,8 @@
 			
 			<result name="queryprojects">/WEB-INF/query/QueryProjects.jsp</result>
 			<result name="querytasks">/WEB-INF/query/QueryTasks.jsp</result>
+			
+			<result name="addBudget">/WEB-INF/pages/editBudget.jsp</result>
 		</action>
 		<action name="ProjectAction" class="com.project.ProjectAction">
 			<result name="success"> /WEB-INF/pages/ViewProject.jsp</result>
@@ -77,6 +79,21 @@
 		</action>
 		<action name="queryTask" class="edu.scu.frugal.action.QueryAction">
 			<result name="success">/WEB-INF/query/listTasks.jsp</result>
+		</action>
+
+		<action name="addBudget" class="edu.scu.frugal.action.BudgetAction">
+			<result name="success">/WEB-INF/pages/editBudget.jsp</result>
+		</action>
+		<action name="editBudget" class="edu.scu.frugal.action.BudgetAction">
+			<result name="success">/WEB-INF/pages/editBudget.jsp</result>
+		</action>
+		<action name="removeBudget" class="edu.scu.frugal.action.BudgetAction">
+			<result type="redirectAction">
+			    <param name="actionName">ProjectAction.action</param>
+			    <param name="namespace">/</param>
+			    <param name="name">${projectName}</param>
+			    <param name="anchor">sectionD</param>
+			</result>
 		</action>		
 	</package>
 

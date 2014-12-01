@@ -152,6 +152,7 @@
 					<li class="active"><a data-toggle="tab" href="#sectionA">Project</a></li>
 					<li><a data-toggle="tab" href="#sectionB">Task</a></li>
 					<li><a data-toggle="tab" href="#sectionC">Team</a></li>
+					<li><a data-toggle="tab" href="#sectionD">Budget</a></li>
 				</ul>
 				<div class="tab-content" style="width: 90%">
 					<div id="sectionA" class="tab-pane fade in active">
@@ -196,8 +197,6 @@
 						<s:a href="%{urlValue}" cssClass="btn btn-info "
 							>Get Timeline</s:a>
 					</div>
-
-
 
 					<div id="sectionB" class="tab-pane fade">
 						<br>
@@ -291,11 +290,57 @@
 								%>
 
 							</table>
-
-
 						</div>
-
 					</div>
+
+					<div id="sectionD" class="tab-pane fade">
+						<br>
+						<h4>Budget Details</h4>
+						<div style="margin: 20px">
+							<table class="table table-striped" >
+								<thead>
+									<tr>
+										<th>Description</th>
+										<th>Projected Amount</th>
+										<th>Actual Amount</th>
+										<th>Operation</th>
+									</tr>
+								</thead>
+								<s:iterator value="budgets">
+								  <tr>
+									<td><s:property value="description" /></td>
+									<td><s:property value="projectedAmount" /></td>
+									<td><s:property value="actualAmount" /></td>
+									<td>
+										<s:url id="url" action="editBudget" encode="true">
+											<s:param name="budget.id"><s:property value="id" /></s:param>
+											<s:param name="budget.description"><s:property value="description" /></s:param>
+											<s:param name="budget.projectedAmount"><s:property value="projectedAmount" /></s:param>
+											<s:param name="budget.actualAmount"><s:property value="projectedAmount" /></s:param>
+											<s:param name="action" value="edit" />
+											<s:param name="budget.projectedAmount"><s:property value="projectedAmount" /></s:param>
+										</s:url> <s:a href="%{url}">
+											<span class="glyphicon glyphicon-pencil" ></span>
+										</s:a>
+										<s:url id="url" action="removeBudget" encode="true">
+											<s:param name="id"><s:property value="id" /></s:param>
+											<s:param name="action" value="remove" />
+											<s:param name="projectName"><s:property value="name" /></s:param>
+										</s:url> <s:a href="%{url}">
+											<span class="glyphicon glyphicon-remove" ></span>
+										</s:a>
+									</td>
+								  </tr>	
+								</s:iterator>
+							</table>
+							<s:url id="urlValue" action="addBudget" encode="true">
+								<s:param name="budget.projectedAmount"><s:property value="projectedAmount" /></s:param>
+							</s:url>
+							<s:a href="%{urlValue}" cssClass="btn btn-info "
+								style="margin-left:40%">Add Budget</s:a>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 		</div>

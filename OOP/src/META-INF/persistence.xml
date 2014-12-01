@@ -11,10 +11,11 @@
 		<class>model.Student</class>
 		<class>model.Faculty</class>
 		<class>model.Partener</class>
+		<class>edu.scu.frugal.model.Budget</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Frugal" />
 			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="1234" />
+			<property name="javax.persistence.jdbc.password" value="" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 		</properties>
 	</persistence-unit>

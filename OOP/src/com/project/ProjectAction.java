@@ -1,12 +1,15 @@
 package com.project;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.struts2.interceptor.SessionAware;
-
 import model.Project;
 import model.User;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import DAO.BudgetService;
 import DAO.ProjectService;
 import DAO.ProjectServiceImp;
 import DAO.TaskService;
@@ -16,27 +19,27 @@ import DAO.UserServiceImp;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import edu.scu.frugal.model.Budget;
+
 public class ProjectAction extends ActionSupport implements SessionAware {
 
 	private String name;
 	Map<String, Object> session;
-	private int taskid=0;
+	private int taskid = 0;
 	private Boolean remove = false;
+	List<Budget> budgets = Collections.emptyList(); // budgets of a project
 
 	public Map<String, Object> getSession() {
 		return session;
 	}
 
-
 	public int getTaskid() {
 		return taskid;
 	}
 
-
 	public void setTaskid(int taskid) {
 		this.taskid = taskid;
 	}
-
 
 	public Boolean getRemove() {
 		return remove;
@@ -60,6 +63,14 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		this.name = name;
 	}
 
+	public List<Budget> getBudgets() {
+		return budgets;
+	}
+
+	public void setBudgets(List<Budget> budgets) {
+		this.budgets = budgets;
+	}
+
 	public String execute() {
 		if (remove == false) {
 			ProjectService ps = new ProjectServiceImp();
@@ -72,20 +83,25 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			if (u.getPartener() != null) {
 				return "partner";
 			}
+			// prepare budgets
+			if (p != null) {
+				BudgetService service = BudgetService.getInstance();
+				this.budgets = service.listBudgets(p.getIdProject());
+			}
 			return SUCCESS;
 		} else {
-			if(taskid!=0){
-			ProjectService ps=new ProjectServiceImp();
-			TaskService ts=new TaskServiceImp();
-			UserService us=new UserServiceImp();
-			Project p=(Project)(session.get("project"));
-			User u=(User)(session.get("user"));
-			ps.deleteTask(p,ts.findTask(taskid));
-			Project newp=ps.findbyname(p.getName());
-			User newu=us.readUser(u.getUserName()).get(0);
-			assert(newp!=null &&newu!=null);
-			session.put("project", newp);
-			session.put("user", newu);
+			if (taskid != 0) {
+				ProjectService ps = new ProjectServiceImp();
+				TaskService ts = new TaskServiceImp();
+				UserService us = new UserServiceImp();
+				Project p = (Project) (session.get("project"));
+				User u = (User) (session.get("user"));
+				ps.deleteTask(p, ts.findTask(taskid));
+				Project newp = ps.findbyname(p.getName());
+				User newu = us.readUser(u.getUserName()).get(0);
+				assert (newp != null && newu != null);
+				session.put("project", newp);
+				session.put("user", newu);
 			}
 			return SUCCESS;
 		}
