@@ -141,27 +141,35 @@
 				</div>
 				<div class="page-header" style="clear: both">
 					<h3><span class="glyphicon glyphicon-th-list"></span>
-					Edit Budget for Project <b><s:property value="projectName" /><b></h3>
+					<s:if test="budget == null || budget.id == 0">
+						Add Budget
+					</s:if>
+					<s:else>
+						Edit Budget
+					</s:else>
+					</h3>
 				</div>
 				<div class="container">
-					<s:form action="addOrEditBudget" cssClass="form-horizontal">
+					<s:form action="saveBudget" cssClass="form-horizontal">
+						<s:hidden name="budget.idProject" value="%{budget.idProject}" />
+						<s:hidden name="projectName" value="%{projectName}" />
 						<div class="form-group">
 							<label class="control-label col-xs-2">Description:</label>
 							<div class="col-xs-7">
-								<s:textfield name="budget.description" cssClass="form-control" placeholder="Enter here" />
+								<s:textfield name="budget.description" value="%{budget.description}" cssClass="form-control" placeholder="Enter here" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-2">Projected Amount:</label>
 							<div class="col-xs-3">
-							<s:textfield name="budget.projectedAmountStr" cssClass="form-control" placeholder="0" />
+							<s:textfield name="budget.projectedAmountStr" value="%{budget.projectedAmountStr}" cssClass="form-control" placeholder="0" />
 							</div>
 							<label class="control-label col-xs-2">(Round to Integer)</label>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-xs-2">Actual Amount:</label>
 							<div class="col-xs-3">
-							<s:textfield name="budget.actualAmountStr" cssClass="form-control" placeholder="0" />
+							<s:textfield name="budget.actualAmountStr" value="%{budget.actualAmountStr}" cssClass="form-control" placeholder="0" />
 							</div>
 							<label class="control-label col-xs-2">(Round to Integer)</label>
 						</div>

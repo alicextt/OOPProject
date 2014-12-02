@@ -7,7 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+
+import com.google.common.base.Objects;
 
 @Entity(name = "Budget")
 public class Budget implements Serializable {
@@ -24,12 +25,8 @@ public class Budget implements Serializable {
 	int idProject;
 	@Column
 	int projectedAmount;
-	@Transient
-	String projectedAmountStr;
 	@Column
 	int actualAmount;
-	@Transient
-	String actualAmountStr;
 
 	public Budget() {
 	}
@@ -58,8 +55,19 @@ public class Budget implements Serializable {
 		this.idProject = idProject;
 	}
 
+	public String getIdProjectStr() {
+		return "" + idProject;
+	}
+
+	public void setIdProjectStr(String idProjectStr) {
+		try {
+			this.idProject = Integer.parseInt(idProjectStr);
+		} catch (Exception e) {
+			System.err.println("invalid project id " + idProjectStr);
+		}
+	}
+
 	public int getProjectedAmount() {
-		this.projectedAmountStr = "" + projectedAmount;
 		return projectedAmount;
 	}
 
@@ -68,11 +76,10 @@ public class Budget implements Serializable {
 	}
 
 	public String getProjectedAmountStr() {
-		return projectedAmountStr;
+		return "" + projectedAmount;
 	}
 
 	public void setProjectedAmountStr(String projectedAmountStr) {
-		this.projectedAmountStr = projectedAmountStr;
 		try {
 			this.projectedAmount = Integer.parseInt(projectedAmountStr);
 		} catch (Exception e) {
@@ -81,7 +88,6 @@ public class Budget implements Serializable {
 	}
 
 	public int getActualAmount() {
-		this.actualAmountStr = "" + this.actualAmount;
 		return actualAmount;
 	}
 
@@ -90,15 +96,21 @@ public class Budget implements Serializable {
 	}
 
 	public String getActualAmountStr() {
-		return actualAmountStr;
+		return "" + actualAmount;
 	}
 
 	public void setActualAmountStr(String actualAmountStr) {
-		this.actualAmountStr = actualAmountStr;
 		try {
 			this.actualAmount = Integer.parseInt(actualAmountStr);
 		} catch (Exception e) {
 			System.err.println("invalid actual amount " + actualAmountStr);
 		}
 	}
+
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(this).add("id", id).add("projected", this.projectedAmount)
+				.add("actual", this.actualAmount).toString();
+	}
+
 }

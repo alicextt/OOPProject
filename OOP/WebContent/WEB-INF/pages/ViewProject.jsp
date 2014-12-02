@@ -321,19 +321,14 @@
 									<td><s:property value="projectedAmount" /></td>
 									<td><s:property value="actualAmount" /></td>
 									<td>
-										<s:url id="url" action="editBudget" encode="true">
+										<s:url id="url" action="inputBudget" encode="true">
 											<s:param name="budget.id"><s:property value="id" /></s:param>
-											<s:param name="budget.description"><s:property value="description" /></s:param>
-											<s:param name="budget.projectedAmount"><s:property value="projectedAmount" /></s:param>
-											<s:param name="budget.actualAmount"><s:property value="projectedAmount" /></s:param>
-											<s:param name="action" value="edit" />
-											<s:param name="budget.projectedAmount"><s:property value="projectedAmount" /></s:param>
+											<s:param name="projectName"><s:property value="name" /></s:param>
 										</s:url> <s:a href="%{url}">
 											<span class="glyphicon glyphicon-pencil" ></span>
 										</s:a>
 										<s:url id="url" action="removeBudget" encode="true">
-											<s:param name="id"><s:property value="id" /></s:param>
-											<s:param name="action" value="remove" />
+											<s:param name="budget.id"><s:property value="id" /></s:param>
 											<s:param name="projectName"><s:property value="name" /></s:param>
 										</s:url> <s:a href="%{url}">
 											<span class="glyphicon glyphicon-remove" ></span>
@@ -342,8 +337,9 @@
 								  </tr>	
 								</s:iterator>
 							</table>
-							<s:url id="urlValue" action="addBudget" encode="true">
-								<s:param name="budget.projectedAmount"><s:property value="projectedAmount" /></s:param>
+							<s:url id="urlValue" action="inputBudget" encode="true">
+								<s:param name="budget.idProjectStr"><s:property value="projectId" /></s:param>
+								<s:param name="projectName"><s:property value="name" /></s:param>
 							</s:url>
 							<s:a href="%{urlValue}" cssClass="btn btn-info "
 								style="margin-left:40%">Add Budget</s:a>

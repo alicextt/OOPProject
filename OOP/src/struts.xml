@@ -92,20 +92,25 @@
 			<result name="success">/WEB-INF/query/listTasks.jsp</result>
 		</action>
 
-		<action name="addBudget" class="edu.scu.frugal.action.BudgetAction">
-			<result name="success">/WEB-INF/pages/editBudget.jsp</result>
+		<action name="inputBudget" class="edu.scu.frugal.action.BudgetAction" method="input">
+			<result name="input">/WEB-INF/pages/editBudget.jsp</result>
 		</action>
-		<action name="editBudget" class="edu.scu.frugal.action.BudgetAction">
-			<result name="success">/WEB-INF/pages/editBudget.jsp</result>
-		</action>
-		<action name="removeBudget" class="edu.scu.frugal.action.BudgetAction">
+		<action name="removeBudget" class="edu.scu.frugal.action.BudgetAction" method="delete">
 			<result type="redirectAction">
 			    <param name="actionName">ProjectAction.action</param>
 			    <param name="namespace">/</param>
 			    <param name="name">${projectName}</param>
 			    <param name="anchor">sectionD</param>
 			</result>
-		</action>		
+		</action>
+		<action name="saveBudget" class="edu.scu.frugal.action.BudgetAction" method="save">
+			<result name="success" type="redirectAction">
+			    <param name="actionName">ProjectAction.action</param>
+			    <param name="namespace">/</param>
+			    <param name="name">${projectName}</param>
+			    <param name="anchor">sectionD</param>
+			</result>
+		</action>
 	</package>
 
 	<package name="select" extends="json-default">

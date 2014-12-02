@@ -24,6 +24,7 @@ import edu.scu.frugal.model.Budget;
 public class ProjectAction extends ActionSupport implements SessionAware {
 
 	private String name;
+	int projectId;
 	Map<String, Object> session;
 	private int taskid = 0;
 	private Boolean remove = false;
@@ -63,6 +64,14 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 		this.name = name;
 	}
 
+	public int getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
+	}
+
 	public List<Budget> getBudgets() {
 		return budgets;
 	}
@@ -83,6 +92,7 @@ public class ProjectAction extends ActionSupport implements SessionAware {
 			if (u.getPartener() != null) {
 				return "partner";
 			}
+			this.projectId = p.getIdProject();
 			// prepare budgets
 			if (p != null) {
 				BudgetService service = BudgetService.getInstance();

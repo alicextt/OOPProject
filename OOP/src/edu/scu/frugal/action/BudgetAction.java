@@ -1,12 +1,8 @@
 package edu.scu.frugal.action;
 
-import java.util.Map;
-
-import model.Project;
 import DAO.BudgetService;
 
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -15,37 +11,37 @@ import edu.scu.frugal.model.Budget;
 public class BudgetAction extends ActionSupport implements ModelDriven<Budget> {
 
 	private static final long serialVersionUID = -425246257416832377L;
-	Budget budget = new Budget();
-	String action;
+	Budget budget;
 	String projectName;
 
-	@Override
-	public String execute() throws Exception {
-		Map<String, Object> session = ActionContext.getContext().getSession();
-		Project p = (Project) (session.get("project"));
-		System.out.println("passed in name: " + projectName);
-		if (p != null) {
+	public String doInput() {
+		if (budget != null && budget.getId() != 0) {
 			BudgetService service = BudgetService.getInstance();
-			if ("edit".equals(action)) {
+			budget = service.find(budget.getId());
+		} else {
+			budget = new Budget();
+		}
+		System.out.println("budget: " + budget);
+		return Action.INPUT;
+	}
 
-			} else if ("remove".equals(action)) {
-				service.delete(budget.getId());
-				System.out.println("deleted budget id: " + budget.getId());
-			} else {
-				// add
-				budget.setId(BudgetService.getNextId());
-				service.addBudget(budget);
-			}
+	public String doDelete() {
+		if (budget != null && budget.getId() != 0) {
+			BudgetService service = BudgetService.getInstance();
+			service.delete(budget.getId());
 		}
 		return Action.SUCCESS;
 	}
 
-	public String getAction() {
-		return action;
-	}
-
-	public void setAction(String action) {
-		this.action = action;
+	public String doSave() {
+		BudgetService service = BudgetService.getInstance();
+		if (budget.getId() == 0) {
+			service.addBudget(budget);
+		} else {
+			service.updateBudget(budget);
+		}
+		System.out.println("project name: " + this.projectName);
+		return Action.SUCCESS;
 	}
 
 	public String getProjectName() {

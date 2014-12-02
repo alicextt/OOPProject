@@ -47,8 +47,13 @@ public class BudgetService {
 		return result;
 	}
 
+	public Budget find(int id) {
+		return manager.find(Budget.class, id);
+	}
+
 	public Budget addBudget(Budget budget) {
 		manager.getTransaction().begin();
+		budget.setId(getNextId());
 		manager.persist(budget);
 		manager.getTransaction().commit();
 		return budget;
@@ -58,7 +63,7 @@ public class BudgetService {
 		Budget budget = manager.find(Budget.class, updatedBudget.getId());
 		if (budget != null) {
 			manager.getTransaction().begin();
-			manager.merge(budget);
+			manager.merge(updatedBudget);
 			manager.getTransaction().commit();
 		}
 		return updatedBudget;
@@ -73,4 +78,15 @@ public class BudgetService {
 		}
 	}
 
+	public static void main(String[] args) {
+		Budget b = new Budget();
+		b.setActualAmount(80);
+		b.setProjectedAmount(200);
+		b.setDescription("wawa");
+		// b.setIdProject(201);
+		// BudgetService.getInstance().addBudget(b);
+		// BudgetService.getInstance().delete(502);
+		b.setId(503);
+		BudgetService.getInstance().updateBudget(b);
+	}
 }
