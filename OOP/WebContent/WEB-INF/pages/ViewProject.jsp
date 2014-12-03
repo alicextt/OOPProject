@@ -318,8 +318,8 @@
 								<s:iterator value="budgets">
 								  <tr>
 									<td><s:property value="description" /></td>
-									<td><s:property value="projectedAmount" /></td>
-									<td><s:property value="actualAmount" /></td>
+									<td>$<s:property value="projectedAmount" /></td>
+									<td>$<s:property value="actualAmount" /></td>
 									<td>
 										<s:url id="url" action="inputBudget" encode="true">
 											<s:param name="budget.id"><s:property value="id" /></s:param>
