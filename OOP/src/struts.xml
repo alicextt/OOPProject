@@ -92,21 +92,19 @@
 			<result name="success">/WEB-INF/query/listTasks.jsp</result>
 		</action>
 
-		<action name="inputBudget" class="edu.scu.frugal.action.BudgetAction" method="input">
+		<action name="inputBudget" class="edu.scu.frugal.action.BudgetAction" method="edit">
 			<result name="input">/WEB-INF/pages/editBudget.jsp</result>
 		</action>
 		<action name="removeBudget" class="edu.scu.frugal.action.BudgetAction" method="delete">
 			<result type="redirectAction">
 			    <param name="actionName">ProjectAction.action</param>
-			    <param name="namespace">/</param>
 			    <param name="name">${projectName}</param>
 			    <param name="anchor">sectionD</param>
 			</result>
 		</action>
 		<action name="saveBudget" class="edu.scu.frugal.action.BudgetAction" method="save">
-			<result name="success" type="redirectAction">
+			<result type="redirectAction">
 			    <param name="actionName">ProjectAction.action</param>
-			    <param name="namespace">/</param>
 			    <param name="name">${projectName}</param>
 			    <param name="anchor">sectionD</param>
 			</result>

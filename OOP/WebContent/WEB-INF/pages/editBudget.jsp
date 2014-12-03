@@ -151,6 +151,7 @@
 				</div>
 				<div class="container">
 					<s:form action="saveBudget" cssClass="form-horizontal">
+						<s:hidden name="budget.id" value="%{budget.id}" />
 						<s:hidden name="budget.idProject" value="%{budget.idProject}" />
 						<s:hidden name="projectName" value="%{projectName}" />
 						<div class="form-group">

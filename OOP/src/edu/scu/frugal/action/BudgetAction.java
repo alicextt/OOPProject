@@ -14,14 +14,12 @@ public class BudgetAction extends ActionSupport implements ModelDriven<Budget> {
 	Budget budget;
 	String projectName;
 
-	public String doInput() {
+	public String doEdit() {
 		if (budget != null && budget.getId() != 0) {
 			BudgetService service = BudgetService.getInstance();
 			budget = service.find(budget.getId());
-		} else {
-			budget = new Budget();
 		}
-		System.out.println("budget: " + budget);
+		System.out.println("edit budget: " + budget);
 		return Action.INPUT;
 	}
 
@@ -35,12 +33,12 @@ public class BudgetAction extends ActionSupport implements ModelDriven<Budget> {
 
 	public String doSave() {
 		BudgetService service = BudgetService.getInstance();
+		System.out.println("saving budget: " + budget);
 		if (budget.getId() == 0) {
 			service.addBudget(budget);
 		} else {
 			service.updateBudget(budget);
 		}
-		System.out.println("project name: " + this.projectName);
 		return Action.SUCCESS;
 	}
 

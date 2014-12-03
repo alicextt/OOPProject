@@ -338,7 +338,7 @@
 								</s:iterator>
 							</table>
 							<s:url id="urlValue" action="inputBudget" encode="true">
-								<s:param name="budget.idProjectStr"><s:property value="projectId" /></s:param>
+								<s:param name="budget.idProject"><s:property value="projectId" /></s:param>
 								<s:param name="projectName"><s:property value="name" /></s:param>
 							</s:url>
 							<s:a href="%{urlValue}" cssClass="btn btn-info "

@@ -55,18 +55,6 @@ public class Budget implements Serializable {
 		this.idProject = idProject;
 	}
 
-	public String getIdProjectStr() {
-		return "" + idProject;
-	}
-
-	public void setIdProjectStr(String idProjectStr) {
-		try {
-			this.idProject = Integer.parseInt(idProjectStr);
-		} catch (Exception e) {
-			System.err.println("invalid project id " + idProjectStr);
-		}
-	}
-
 	public int getProjectedAmount() {
 		return projectedAmount;
 	}
@@ -109,8 +97,8 @@ public class Budget implements Serializable {
 
 	@Override
 	public String toString() {
-		return Objects.toStringHelper(this).add("id", id).add("projected", this.projectedAmount)
-				.add("actual", this.actualAmount).toString();
+		return Objects.toStringHelper(this).add("id", id).add("projectId", this.idProject)
+				.add("projected", this.projectedAmount).add("actual", this.actualAmount).toString();
 	}
 
 }
