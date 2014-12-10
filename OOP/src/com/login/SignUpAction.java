@@ -1,5 +1,6 @@
 package com.login;
 
+import model.Faculty;
 import model.Partener;
 import model.Student;
 import model.User;
@@ -44,6 +45,11 @@ public class SignUpAction extends ActionSupport {
 			Partener p=new Partener();
 			p.setUserName(u.getUserName());
 			u.setPartener(p);
+		}
+		else if(role.equals("faculty")){
+			Faculty f=new Faculty();
+			f.setUserName(u.getUserName());
+			u.setFaculty(f);
 		}
 		
 		UserService us = new UserServiceImp();

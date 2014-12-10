@@ -41,7 +41,7 @@ public class CreateProjectAction extends ActionSupport implements SessionAware {
 	}
 
 	public void setprojectdate() {
-		SimpleDateFormat start = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat start = new SimpleDateFormat("yyyy-MM-dd");
 
 		Date sdate;
 		Date edate;
