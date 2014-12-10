@@ -27,7 +27,7 @@
 					Innovation Lab</h1>
 				<div class="account-wall">
 					<img class="profile-img"
-						src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+						src="http://www.scu.edu/engineering/frugal/images/home-03.jpg?sz=500"
 						alt="">
 					<s:form action="Login" cssClass="form-signin">
 					<!-- this will parse the userName to obejct u directly -->

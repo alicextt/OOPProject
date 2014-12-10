@@ -48,22 +48,21 @@
 							</div>
 
 							<div class="form-group">
-										<s:textfield name="u.userName" id="username"
-											cssClass="form-control input-sm" placeholder="Username" />
-									
+								<s:textfield name="u.userName" id="username"
+									cssClass="form-control input-sm" placeholder="Username" />
+
 							</div>
-									<div class="form-group">
-										<s:password name="u.passWord" id="password"
-											cssClass="form-control input-sm" placeholder="Password" />
-									
+							<div class="form-group">
+								<s:password name="u.passWord" id="password"
+									cssClass="form-control input-sm" placeholder="Password" />
+
 							</div>
-							<!-- <div class="col-sm-10">
-								<div class="checkbox" style="margin-left: 100px;margin-top:-5px">
-									<label > <input type="checkbox"> <b>Administrator
-									</label>
+
+								<div class="form-group">
+									<s:textfield name="role" id="role"
+										cssClass="form-control input-sm" placeholder="Role: student/ faculty/ partner" />
 								</div>
-							</div>
- -->
+
 
 							<s:submit value="Register" cssClass="btn btn-info btn-block" />
 						</s:form>

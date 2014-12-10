@@ -1,5 +1,7 @@
 package com.login;
 
+import model.Partener;
+import model.Student;
 import model.User;
 import DAO.UserService;
 import DAO.UserServiceImp;
@@ -7,27 +9,43 @@ import DAO.UserServiceImp;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class SignUpAction extends ActionSupport {
-	private String password_confirmation;
 	private User u;
+	private String role;
+
+	public String getRole() {
+		return role;
+	}
+
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
 
 	public User getU() {
 		return u;
 	}
 
-	public String getPassword_confirmation() {
-		return password_confirmation;
-	}
-
-	public void setPassword_confirmation(String password_confirmation) {
-		this.password_confirmation = password_confirmation;
-	}
+	
 
 	public void setU(User u) {
 		this.u = u;
 	}
 
 	public String execute() {
-
+		if(role.equals("student")){
+			Student s=new Student();
+			s.setUserName(u.getUserName());
+			u.setStudent(s);
+		}
+		else if(role.equals("partner")){
+			Partener p=new Partener();
+			p.setUserName(u.getUserName());
+			u.setPartener(p);
+		}
+		
 		UserService us = new UserServiceImp();
 		if (!(us.addUser(u))) {
 			addFieldError("u.userName", "Existed Account !");
